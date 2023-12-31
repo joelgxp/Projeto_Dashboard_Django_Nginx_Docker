@@ -3,9 +3,7 @@
 
 ## Pré-requisitos
 
-- Python (versão 3.8.5-alpine)
-- Django (versão 3.0.8)
-- Gunicorn (versão 20.0.04)
+- Python (versão 3.12.0) Faça o download no site oficial https://www.python.org/downloads/
 
 ## Configuração do Ambiente
 
