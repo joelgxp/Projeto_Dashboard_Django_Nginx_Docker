@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    >
+    
     <!-- App favicon -->
     <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}">
 
@@ -39,17 +39,22 @@
                                         </p>
 
                                         <!-- form -->
-                                        <form action="#">
+                                        <form action="/auth_login/" method="POST">
+
+                                            {{ error }}
+
+                                            {% csrf_token %}
+                                            
                                             <div class="mb-3">
-                                                <label for="emailaddress" class="form-label">Email</label>
-                                                <input class="form-control" type="email" id="emailaddress" required=""
+                                                <label for="email" class="form-label">Email</label>
+                                                <input class="form-control" type="email" name="email" id="email" required=""
                                                     placeholder="Digite seu email">
                                             </div>
                                             <div class="mb-3">
                                                 <a href="auth-forgotpw.html"
                                                     class="text-muted float-end"><small>Esqueceu sua senha?</small></a>
                                                 <label for="password" class="form-label">Senha</label>
-                                                <input class="form-control" type="password" required="" id="password"
+                                                <input class="form-control" type="password" name="password" required="" id="password"
                                                     placeholder="Digite sua senha">
                                             </div>
                                             <div class="mb-3">
@@ -62,7 +67,7 @@
                                             </div>
                                             <div class="mb-0 text-start">
                                                 <button class="btn btn-soft-primary w-100" type="submit"><i
-                                                        class="ri-login-circle-fill me-1"></i> <span class="fw-bold">Entrar                                                       In</span> </button>
+                                                        class="ri-login-circle-fill me-1"></i> <span class="fw-bold">Entrar</span> </button>
                                             </div>
 
                                             <div class="text-center mt-4">
@@ -90,7 +95,7 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="text-dark-emphasis">Não tem uma conta? <a href="/auth-register"
+                    <p class="text-dark-emphasis">Não tem uma conta? <a href="/auth_register"
                             class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Cadastra-se</b></a>
                     </p>
                 </div> <!-- end col -->
@@ -106,11 +111,6 @@
             <script>document.write(new Date().getFullYear())</script> © Joel
         </span>
     </footer>
-    <!-- Vendor js -->
-    <script src="{% static 'js/vendor.min.js' %}"></script>
-
-    <!-- Dashboard App js -->
-    <script src="{% static 'js/dashboard.js' %}"></script>
 
 </body>
 
