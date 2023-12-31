@@ -10,8 +10,8 @@
 1. Clone o repositório:
 
 2. Crie e ative um ambiente virtual:
-- python -m venv venv
-- source venv/bin/activate  # No Windows, use `venv\Scripts\activate`
+- python -m venv venv (essa pasta deve ser criada dentro da pasta projeto)
+- No Windows, use `venv\Scripts\activate`
 
 3. Instale as dependências:
 - pip install -r requirements.txt
