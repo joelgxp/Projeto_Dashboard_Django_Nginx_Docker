@@ -1,6 +1,6 @@
+from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
-from django.shortcuts import redirect, render
 
 
 def auth_login(request):
@@ -10,13 +10,16 @@ def auth_login(request):
         })
         
     else:
-        user = authenticate(request, email=request.POST.get('email'), password=request.POST.get('password'))
+        
+        user = authenticate(
+            request, email=request.POST['email'], password=request.POST['password'])
 
         if user is None:
-            return render(request, '/auth_login', {
-            'form' : AuthenticationForm,
-            "error" : "Usuário ou senha inválido."                
+            return render(request, 'auth-login.html', {
+                'form' : AuthenticationForm,
+                "error" : "Usuário ou senha inválido."                
             })
         else:
             login(request, user)
             return redirect('/index')
+        
