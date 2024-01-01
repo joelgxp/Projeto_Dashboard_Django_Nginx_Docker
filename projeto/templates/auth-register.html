@@ -6,8 +6,11 @@
 <head>
     <meta charset="utf-8" />
     <title>Cadastra-se</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+
+    <!-- Adicione o link para o manifesto -->
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+
     <!-- App favicon -->
     <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}">
 
@@ -52,29 +55,31 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label for="email" class="form-label">Email</label>
-                                                <input class="form-control" type="email" name="email" id="email" required=""
-                                                    placeholder="Digite seu email">
+                                                <input class="form-control" type="email" name="email" id="email"
+                                                    required="" placeholder="Digite seu email">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="password" class="form-label">Senha</label>
-                                                <input class="form-control" type="password" name="password" required="" id="password"
-                                                    placeholder="Digite sua senha">
+                                                <input class="form-control" type="password" name="password" required=""
+                                                    id="password" placeholder="Digite sua senha">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="password2" class="form-label">Confirme sua senha</label>
-                                                <input class="form-control" type="password" name="password2" required="" id="password2"
-                                                    placeholder="Confirme sua senha">
+                                                <input class="form-control" type="password" name="password2" required=""
+                                                    id="password2" placeholder="Confirme sua senha">
                                             </div>
                                             <div class="mb-3">
                                                 <div class="form-check">
                                                     <input type="checkbox" class="form-check-input"
                                                         id="checkbox-signup">
-                                                    <label class="form-check-label" for="checkbox-signup">Eu aceito os <a
-                                                            href="javascript: void(0);" class="text-muted">Termos e Condições.</a></label>
+                                                    <label class="form-check-label" for="checkbox-signup">Eu aceito os
+                                                        <a href="javascript: void(0);" class="text-muted">Termos e
+                                                            Condições.</a></label>
                                                 </div>
                                             </div>
                                             <div class="mb-0 d-grid text-center">
-                                                <button class="btn btn-primary fw-semibold" type="submit">Cadastrar</button>
+                                                <button class="btn btn-primary fw-semibold"
+                                                    type="submit">Cadastrar</button>
                                             </div>
 
                                             <div class="text-center mt-4">
