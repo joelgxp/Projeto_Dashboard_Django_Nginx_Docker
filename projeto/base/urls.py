@@ -23,6 +23,7 @@ urlpatterns = [
     path('', index_view.index, name='index'),
     path('auth_login/', auth_login_view.auth_login, name='auth_login'),
     path('auth_register/', auth_register_view.auth_register, name='auth_register'),
+    path('dashboard/', index_view.dashboard, name='dashboard'),
     path('lider/', lider_view.lider, name='lider'),
     path('criar_editar_lider/', lider_view.criar_editar_lider, name='criar_editar_lider'),
     path('colaborador/', colaborador_view.colaborador, name='colaborador'),
