@@ -11,16 +11,16 @@
 
 2. Crie e ative um ambiente virtual:
 - python -m venv venv (essa pasta deve ser criada dentro da pasta projeto)
-- No Windows, use `venv\Scripts\activate`
+- No Windows, use `venv/Scripts/activate`
 
 3. Instale as dependências:
 - pip install -r requirements.txt
 
 4. Execute as migrações:
-- python manage.py migrate
+- python ./projeto/manage.py migrate
 
 5. Inicie o servidor de desenvolvimento:
-- python manage.py runserver
+- python ./projeto/manage.py runserver
 
 Acesse http://localhost:8000/ em seu navegador.
 
