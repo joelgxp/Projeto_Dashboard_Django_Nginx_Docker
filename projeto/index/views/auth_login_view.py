@@ -10,7 +10,8 @@ def auth_login(request):
         })
         
     else:
-        user = authenticate(request, email=request.POST['email'], password=request.POST['password'])
+        user = authenticate(request, email=request.POST.get('email'), password=request.POST.get('password'))
+
         if user is None:
             return render(request, '/auth_login', {
             'form' : AuthenticationForm,
