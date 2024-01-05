@@ -23,3 +23,6 @@ def auth_login(request):
             login(request, user)
             return redirect('/index')
         
+def auth_logout(request):
+    return render(request, 'auth-logout.html')
+        
