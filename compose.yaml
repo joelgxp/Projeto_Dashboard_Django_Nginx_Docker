@@ -4,8 +4,6 @@ services:
   django_gunicorn:
     volumes:
       - static:/app/static
-    env_file:
-      - .env
     build:
       context: .
     image: joelgxp/django:0.0.1
