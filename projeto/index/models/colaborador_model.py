@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 class colaboradorModel(models.Model):
     nome = models.CharField(max_length=255)
@@ -7,4 +8,9 @@ class colaboradorModel(models.Model):
     ativo = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.nome
+        return f"{self.nome} - {self.email} - {self.departamento}"
+     
+class colaboradorForm(forms.ModelForm):
+    class Meta:
+        model = colaboradorModel
+        fields = ['nome', 'departamento', 'email', 'senha']
