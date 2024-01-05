@@ -1,24 +1,24 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="utf-8" />
-    <title>Logout | Velonic - Bootstrap 5 Admin & Dashboard Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta content="A fully responsive admin theme which can be used to build CRM, CMS,ERP etc." name="description" />
-    <meta content="Techzaa" name="author" />
-
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    
     <!-- App favicon -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}">
 
     <!-- Theme Config Js -->
-    <script src="assets/js/config.js"></script>
+    <script src="{% static 'js/config.js' %}"></script>
 
     <!-- App css -->
-    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+    <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
 
     <!-- Icons css -->
-    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{% static 'css/icons.min.css' %}">
 </head>
 
 <body class="authentication-bg">
@@ -30,24 +30,15 @@
                     <div class="card overflow-hidden">
                         <div class="row g-0">
                             <div class="col-lg-6 d-none d-lg-block p-2">
-                                <img src="assets/images/auth-img.jpg" alt="" class="img-fluid rounded h-100">
+                                <img src="{% static 'image/auth-img.jpg' %}" alt="" class="img-fluid rounded h-100">
                             </div>
                             <div class="col-lg-6">
                                 <div class="d-flex flex-column h-100">
-                                    <div class="auth-brand p-4">
-                                        <a href="index.html" class="logo-light">
-                                            <img src="assets/images/logo.png" alt="logo" height="22">
-                                        </a>
-                                        <a href="index.html" class="logo-dark">
-                                            <img src="assets/images/logo-dark.png" alt="dark logo" height="22">
-                                        </a>
-                                    </div>
                                     <div class="p-4 my-auto">
                                         <div class="my-auto">
                                             <!-- title-->
                                             <div class="text-center">
-                                                <h4 class="mt-0 fs-20">See You Again !</h4>
-                                                <p class="text-muted mb-4">You are now successfully sign out.</p>
+                                                <h4 class="mt-0 fs-20">Você fez o logout com sucesso!</h4>
                                             </div>
 
                                             <!-- Logout icon -->
@@ -77,8 +68,8 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center">
-                    <p class="text-dark-emphasis">Back To <a href="auth-login.html"
-                            class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Log In</b></a></p>
+                    <p class="text-dark-emphasis">Volte para tela de <a href="/auth_login"
+                            class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Login</b></a></p>
                 </div> <!-- end col -->
             </div>
             <!-- end row -->
@@ -88,15 +79,16 @@
     <!-- end page -->
 
     <footer class="footer footer-alt fw-medium">
-        <span class="text-dark-emphasis">
-            <script>document.write(new Date().getFullYear())</script> © Velonic - Theme by Techzaa
+        <span class="text-dark">
+            <script>document.write(new Date().getFullYear())</script> © Joel
         </span>
     </footer>
+
     <!-- Vendor js -->
-    <script src="assets/js/vendor.min.js"></script>
+    <script src="{% static 'js/vendor.min.js' %}"></script>
 
     <!-- App js -->
-    <script src="assets/js/app.min.js"></script>
+    <script src="{% static 'js/app.min.js' %}" defer></script>
 
 </body>
 
