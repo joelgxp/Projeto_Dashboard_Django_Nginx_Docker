@@ -22168,3 +22168,24 @@ div.dataTables_scrollBody>table>:not(:first-child) {
 }
 
 /*# sourceMappingURL=app.min.css.map */
+
+
+th.col1 {
+    width: 5%; /* Defina a largura desejada para a primeira coluna */
+}
+
+th.col2 {
+    width: 30%; /* Defina a largura desejada para a segunda coluna */
+}
+
+th.col3 {
+    width: 15%; /* Defina a largura desejada para a terceira coluna */
+}
+
+th.col4 {
+    width: 30%; /* Defina a largura desejada para a terceira coluna */
+}
+
+th.col5 {
+    width: 20%; /* Defina a largura desejada para a terceira coluna */
+}
