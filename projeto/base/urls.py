@@ -16,17 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from index.views import index_view, lider_view, colaborador_view, reuniao_view, auth_login_view, auth_register_view
+from index.views import index_view, lider_view, colaborador_view, reuniao_view, auth_login_view, auth_register_view, usuarios_view
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),    
+    path('usuarios/', usuarios_view.UsuariosView.as_view(), name='usuarios'),
     path('', index_view.index, name='index'),
     path('auth_login/', auth_login_view.auth_login, name='auth_login'),
     path('auth_register/', auth_register_view.auth_register, name='auth_register'),
+    path('auth_logout/', auth_login_view.auth_logout, name='auth_logout'),
     path('dashboard/', index_view.dashboard, name='dashboard'),
+    path('profile/', index_view.profile, name='profile'),
     path('lider/', lider_view.lider, name='lider'),
-    path('criar_editar_lider/', lider_view.criar_editar_lider, name='criar_editar_lider'),
+    path('criar_lider/', lider_view.criar_lider, name='criar_lider'),
     path('colaborador/', colaborador_view.colaborador, name='colaborador'),
     path('reuniao/', reuniao_view.reuniao, name='reuniao')
-    
 ]
