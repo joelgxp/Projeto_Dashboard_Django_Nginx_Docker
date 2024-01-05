@@ -1,3 +1,4 @@
+from django import forms
 from django.db import models
 
 class auth_registerModel(models.Model):
@@ -8,3 +9,8 @@ class auth_registerModel(models.Model):
 
     def __str__(self):
         return self.nome
+    
+class auth_registerForm(forms.ModelForm):
+    class Meta:
+        model = auth_registerModel
+        fields = ['nome', 'email', 'password']
