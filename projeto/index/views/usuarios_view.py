@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from models.usuario_model import Usuario
-from serializers.usuarios_serializer import UsuariosSerializer
+from ..models.usuario_model import Usuario
+from ..serializers.usuarios_serializer import UsuariosSerializer
 from rest_framework import status as status_code
 
 class UsuariosView(APIView):
