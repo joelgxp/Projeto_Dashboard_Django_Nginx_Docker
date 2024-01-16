@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from index.models.lider_model import LiderForm, LiderModel
+from index.models import LiderForm, LiderModel
 
 def lider(request):
     lideres = LiderModel.objects.all()
