@@ -107,6 +107,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'index.Usuario'
+
+# AUTHENTICATION_BACKENDS = ['index.views.auth_login_view']
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
