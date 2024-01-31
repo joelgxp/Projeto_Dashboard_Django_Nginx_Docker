@@ -83,7 +83,33 @@ class UsuarioModel(models.Model):
     def __str__(self):
         return f"{self.nome} - {self.email}"
     
-class PacienteForm(forms.ModelForm):
-    class Meta:
-        model = UsuarioModel
-        fields = ['nome', 'email', 'senha']
+# class PacienteForm(forms.ModelForm):
+#     class Meta:
+#         model = PacienteModel
+#         fields = ['guia', 
+#                   'registro', 
+#                   'categoria', 
+#                   'solicitacao',
+#                   'data_habilitacao',
+#                   'nome_completo',
+#                   'data_nascimento',
+#                   'sexo',
+#                   'identidade',
+#                   'orgao_emissor',
+#                   'uf_emissor',
+#                   'naturalidade',
+#                   'uf_naturalidade',
+#                   'nome_mae',
+#                   'nome_pai',
+#                   'celular',
+#                   'cpf',
+#                   'logradouro',
+#                   'numero',
+#                   'bairro',
+#                   'cidade',
+#                   'cep',
+#                   'complemento',
+#                   'uf_cidade',
+#                   'ativo',
+#                   'atendido',
+#                   ]
