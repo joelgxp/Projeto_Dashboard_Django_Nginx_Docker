@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'index.Usuario'
+# AUTH_USER_MODEL = 'index.UsuarioModel'
 
 # AUTHENTICATION_BACKENDS = ['index.views.auth_login_view']
 

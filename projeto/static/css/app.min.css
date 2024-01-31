@@ -6655,7 +6655,7 @@ textarea.form-control-lg {
 
 .modal {
     --tz-modal-zindex: 1055;
-    --tz-modal-width: 500px;
+    --tz-modal-width: 90%;
     --tz-modal-padding: 1rem;
     --tz-modal-margin: 0.5rem;
     --tz-modal-bg: var(--tz-secondary-bg);
