@@ -21,11 +21,6 @@ def nome_arquivo_documento(instance, filename):
     
     return os.path.join('documentos_fotos', filename)
 
-def validate_cpf(value):
-    # Verifica se o CPF tem 11 dígitos
-    if not value.isdigit() or len(value) != 14:
-        raise ValidationError('CPF inválido')
-
 class PacienteModel(models.Model):
     CATEGORIA_CHOICES = (
         ('A', "A"),
@@ -73,7 +68,7 @@ class PacienteModel(models.Model):
     cidade = models.CharField(max_length=45, null=False, blank=False)
     cep = models.CharField(max_length=10, null=False, blank=False)
     complemento = models.CharField(max_length=45, null=False, blank=False)
-    cpf = BRCPFField(max_length=14, null=False, blank=False, validators=[validate_cpf])
+    cpf = BRCPFField(max_length=14, null=False, blank=False)
     celular = models.CharField(max_length=15, null=False, blank=False)
     atendido = models.BooleanField(default=False)
     hora_cadastro = models.DateTimeField(auto_now_add=True)

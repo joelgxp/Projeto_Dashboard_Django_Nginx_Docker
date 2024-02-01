@@ -16,8 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from index.views import index_view, auth_login_view, auth_register_view, usuarios_view
-from index.views import paciente_view
+from index.views import index_view, auth_login_view, auth_register_view, usuarios_view, atendimento_view, paciente_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),    
@@ -30,4 +30,7 @@ urlpatterns = [
     path('profile/', index_view.profile, name='profile'),
     path('paciente/', paciente_view.paciente, name='paciente'),
     path('paciente/cadastro/', paciente_view.paciente_cadastro, name='paciente_cadastro'),
+    path('paciente/cadastro/<int:id>/', paciente_view.paciente_cadastro, name='paciente_cadastro_editar'),
+    
+    path('atendimento/', atendimento_view.atendimento, name='atendimento'),
 ]

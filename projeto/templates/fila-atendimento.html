@@ -1,53 +1,110 @@
-<main>
-    <section id="fila-atendimento" class="py-5">
-        <div class="container">
-            <h2>Atendimento</h2>
-            <div class="row">
-                <div class="col-md-12 col-lg-12">
-                    <section>
-                        <h4>Fila de espera: </h4>
-                        <div class="row">
-                            <div class="col">
-                                <table class="table table-striped" id="tabela-espera">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Nome</th>
-                                            <th scope="col">CPF</th>
-                                            <th scope="col">Hora</th>
-                                            <th scope="col">Exame</th>
-                                            <th scope="col"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Conteúdo da tabela de espera -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </section>
-                    <p></p>
-                    <p></p>
-                    <section>
-                        <h4>Candidatos atendidos:</h4>
-                        <div class="row">
-                            <div class="col">
-                                <table class="table table-striped" id="tabela-atendidos">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome</th>
-                                            <th>Hora</th>
-                                            <th>Conclusão</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- Conteúdo da tabela de candidatos atendidos -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </section>
+{% extends 'index.html' %}
+{% block content %}
+
+<!-- start breadcumbss title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-left">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">App</a></li>
+                    <li class="breadcrumb-item active">Atendimento</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<!-- start page lista lider -->
+
+<div class="row">
+    <section id="fila-espera">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Fila de espera: </h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-sm">
+                        <table class="table table-striped table-centered mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">CPF</th>
+                                    <th scope="col">Hora</th>
+                                    <th scope="col">Exame</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for paciente in pacientes %}
+                                <tr>
+                                    <td>{{ paciente.nome }}</td>
+                                    <td>{{ paciente.registro }}</td>
+                                    <td>{{ paciente.cpf }}</td>
+                                    <td>{{ paciente.data_cadastro }}</td>
+                                    <td>{{ paciente.solicitacao }}</td>
+                                    <td>
+                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                                class="ri-dossier-line"></i></a>
+                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                                class="ri-settings-3-line"></i></a>
+                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                                class="ri-delete-bin-2-line"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-</main>
+
+    <section id="fila-atendidos">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Fila de espera: </h4>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-sm">
+                        <table class="table table-striped table-centered mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Hora</th>
+                                    <th>Conclusão</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for paciente in pacientes %}
+                                <tr>
+                                    <td>{{ paciente.nome }}</td>
+                                    <td>{{ paciente.registro }}</td>
+                                    <td>{{ paciente.cpf }}</td>
+                                    <td>{{ paciente.data_cadastro }}</td>
+                                    <td>{{ paciente.solicitacao }}</td>
+                                    <td>
+                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                                class="ri-dossier-line"></i></a>
+                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                                class="ri-settings-3-line"></i></a>
+                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                                class="ri-delete-bin-2-line"></i></a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- end page lista paciente -->
+
+{% endblock %}

@@ -550,9 +550,7 @@ select:disabled {
     display: none!important
 }
 
-[type=button],[type=reset],[type=submit],button {
-    -webkit-appearance: button
-}
+
 
 [type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled),button:not(:disabled) {
     cursor: pointer
@@ -601,10 +599,6 @@ legend+* {
     height: auto
 }
 
-[type=search] {
-    outline-offset: -2px;
-    -webkit-appearance: textfield
-}
 
 ::-webkit-search-decoration {
     -webkit-appearance: none
@@ -619,10 +613,7 @@ legend+* {
     -webkit-appearance: button
 }
 
-::file-selector-button {
-    font: inherit;
-    -webkit-appearance: button
-}
+
 
 output {
     display: inline-block
@@ -22154,17 +22145,21 @@ th.col1 {
 }
 
 th.col2 {
-    width: 30%; /* Defina a largura desejada para a segunda coluna */
+    width: 25%; /* Defina a largura desejada para a segunda coluna */
 }
 
 th.col3 {
-    width: 15%; /* Defina a largura desejada para a terceira coluna */
+    width: 10%; /* Defina a largura desejada para a terceira coluna */
 }
 
 th.col4 {
-    width: 30%; /* Defina a largura desejada para a terceira coluna */
+    width: 15%; /* Defina a largura desejada para a terceira coluna */
 }
 
 th.col5 {
-    width: 20%; /* Defina a largura desejada para a terceira coluna */
+    width: 10%; /* Defina a largura desejada para a terceira coluna */
+}
+
+th.col6 {
+    width: 10%; /* Defina a largura desejada para a terceira coluna */
 }
