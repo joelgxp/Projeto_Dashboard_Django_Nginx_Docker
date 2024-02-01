@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from index.views import index_view, lider_view, auth_login_view, auth_register_view, usuarios_view
+from index.views import index_view, auth_login_view, auth_register_view, usuarios_view
+from index.views import paciente_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),    
@@ -27,6 +28,6 @@ urlpatterns = [
     path('auth_logout/', auth_login_view.auth_logout, name='auth_logout'),
     path('dashboard/', index_view.dashboard, name='dashboard'),
     path('profile/', index_view.profile, name='profile'),
-    path('paciente/', lider_view.paciente, name='paciente'),
-    path('criar_paciente/', lider_view.criar_paciente, name='criar_paciente'),
+    path('paciente/', paciente_view.paciente, name='paciente'),
+    path('paciente/cadastro/', paciente_view.paciente_cadastro, name='paciente_cadastro'),
 ]
