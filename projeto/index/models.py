@@ -147,5 +147,40 @@ class PacienteForm(forms.ModelForm):
             
         }
         
-
+class PacienteExame(models.Model):
+    CHOICES_CONCLUSAO = (
+        ('apto', 'Apto'),
+        ('inapto', 'Inapto'),
+    )
+    CHOICE_CORRECAO_VISUAL = (
+        ('sim', 'Sim'),
+        ('nao', 'Não'),
+    )
+    paciente = models.ForeignKey(PacienteModel, on_delete=models.CASCADE)    
+    data_exame = models.DateField()
+    visao_le = models.IntegerField()
+    visao_ld = models.IntegerField()
+    correcao_visual = models.CharField(choices=CHOICE_CORRECAO_VISUAL, max_length=10)
+    campo_visual_le = models.IntegerField()
+    campo_visual_ld = models.IntegerField()
+    exame_validade = models.DateField()
+    conclusao = models.CharField(choices=CHOICES_CONCLUSAO, max_length=10)
+    complemento = models.CharField(max_length=255, null=True)
+    
+class PacienteExameForm(forms.ModelForm):
+    class Meta:
+        model = PacienteExame
+        fields = ['data_exame', 'visao_le', 'visao_ld', 'correcao_visual', 'campo_visual_le', 'campo_visual_ld', 'exame_validade', 'conclusao', 'complemento']
+        widgets = {
+            'data_exame': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'visao_le': forms.TextInput(attrs={'class': 'form-control'}),
+            'visao_ld': forms.TextInput(attrs={'class': 'form-control'}),
+            'correcao_visual': forms.Select(attrs={'class': 'form-select'}),
+            'campo_visual_le': forms.TextInput(attrs={'class': 'form-control'}),
+            'campo_visual_ld': forms.TextInput(attrs={'class': 'form-control'}),
+            'exame_validade': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'conclusao': forms.Select(attrs={'class': 'form-select'}),
+            'complemento': forms.TextInput(attrs={'class': 'form-control'}),
+            
+        }
     
