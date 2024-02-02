@@ -14,7 +14,6 @@ def paciente_cadastro(request):
     if request.method == 'POST':
         form = PacienteForm(request.POST)
         if form.is_valid():
-            print('enviado')
             form.save()
             return HttpResponseRedirect(reverse('paciente'))
         else:
@@ -24,6 +23,13 @@ def paciente_cadastro(request):
         form = PacienteForm()
             
     return render(request, 'paciente-cadastro.html', {'form': form})       
+
+def paciente_encaminha_atendimento(id):
+    paciente = PacienteModel.objects.get(id=id)
+    paciente.atendido = True
+    paciente.save()
+    
+    return HttpResponseRedirect(reverse('atendimento'))
     
 
 
