@@ -60,7 +60,7 @@
                                 <td>{{ paciente.cpf }}</td>
                                 <td>{{ paciente.data_cadastro }}</td>
                                 <td>
-                                    <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                    <a href="{% url 'paciente_encaminhar' id=paciente.id %}" class="text-reset fs-16 px-1"> <i
                                             class="ri-dossier-line"></i></a>
                                     <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
                                             class="ri-edit-2-line"></i></a>

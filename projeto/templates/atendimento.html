@@ -23,35 +23,30 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header">
-                    <h4>Fila de espera: </h4>
+                    <h4>Fila de espera</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
                         <table class="table table-striped table-centered mb-0">
                             <thead>
                                 <tr>
+                                    <th scope="col">ID</th>
                                     <th scope="col">Nome</th>
-                                    <th scope="col">CPF</th>
                                     <th scope="col">Hora</th>
                                     <th scope="col">Exame</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for paciente in pacientes %}
+                                {% for paciente in pacientes_em_atendimento %}
                                 <tr>
-                                    <td>{{ paciente.nome }}</td>
-                                    <td>{{ paciente.registro }}</td>
-                                    <td>{{ paciente.cpf }}</td>
+                                    <td>{{ paciente.id }}</td>
+                                    <td>{{ paciente.nome_completo }}</td>
                                     <td>{{ paciente.data_cadastro }}</td>
                                     <td>{{ paciente.solicitacao }}</td>
                                     <td>
-                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
+                                        <a href="{% url 'atendimento_preencher_exame' id=paciente.id %}" class="text-reset fs-16 px-1"> <i
                                                 class="ri-dossier-line"></i></a>
-                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
-                                                class="ri-settings-3-line"></i></a>
-                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
-                                                class="ri-delete-bin-2-line"></i></a>
                                     </td>
                                 </tr>
                                 {% endfor %}
@@ -67,7 +62,7 @@
         <div class="col-xl-6">
             <div class="card">
                 <div class="card-header">
-                    <h4>Fila de espera: </h4>
+                    <h4>Atendidos</h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
@@ -80,11 +75,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for paciente in pacientes %}
+                                {% for paciente in pacientes_atendidos %}
                                 <tr>
-                                    <td>{{ paciente.nome }}</td>
-                                    <td>{{ paciente.registro }}</td>
-                                    <td>{{ paciente.cpf }}</td>
+                                    <td>{{ paciente.nome_completo }}</td>
                                     <td>{{ paciente.data_cadastro }}</td>
                                     <td>{{ paciente.solicitacao }}</td>
                                     <td>
