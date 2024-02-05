@@ -21,21 +21,26 @@ from index.views import index_view, auth_login_view, auth_register_view, usuario
 
 urlpatterns = [
     path('admin/', admin.site.urls),    
-    path('usuarios/', usuarios_view.UsuariosView.as_view(), name='usuarios'),
     path('', index_view.index, name='index'),
+    
+    path('usuarios/', usuarios_view.UsuariosView.as_view(), name='usuarios'),
+    
     path('auth_login/', auth_login_view.auth_login, name='auth_login'),
     path('auth_register/', auth_register_view.auth_register, name='auth_register'),
     path('auth_logout/', auth_login_view.auth_logout, name='auth_logout'),
+    
     path('dashboard/', index_view.dashboard, name='dashboard'),
     path('profile/', index_view.profile, name='profile'),
+    
     path('paciente/', paciente_view.paciente, name='paciente'),
     path('paciente/cadastro/', paciente_view.paciente_cadastro, name='paciente_cadastro'),
     path('paciente/editar/<int:id>/', paciente_view.paciente_editar, name='paciente_editar'),
-    path('paciente/encaminhar/<int:id>/', paciente_view.paciente_encaminha_atendimento, name='paciente_encaminhar'),
+    path('paciente/encaminhar/<int:id>/', paciente_view.paciente_encaminha_atend, name='paciente_encaminhar'),
+    path('paciente/fichamedica/<int:id>/', paciente_view.paciente_ficha_impressao, name='paciente_fichamedica'),
+    
     
     path('atendimento/', atendimento_view.atendimento, name='atendimento'),
     path('atendimento/exame/<int:id>/', atendimento_view.atendimento_preenche_exame, name='atendimento_preencher_exame'),
-    path('atendimento/exame/', atendimento_view.atendimento_preenche_exame, name='atendimento_preencher_exame'),
-    
+    path('atendimento/exame/', atendimento_view.atendimento_preenche_exame, name='atendimento_preencher_exame'),    
     
 ]
