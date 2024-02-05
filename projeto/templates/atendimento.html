@@ -77,17 +77,9 @@
                             <tbody>
                                 {% for paciente in pacientes_atendidos %}
                                 <tr>
-                                    <td>{{ paciente.nome_completo }}</td>
-                                    <td>{{ paciente.data_cadastro }}</td>
-                                    <td>{{ paciente.solicitacao }}</td>
-                                    <td>
-                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
-                                                class="ri-dossier-line"></i></a>
-                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
-                                                class="ri-settings-3-line"></i></a>
-                                        <a href="javascript: void(0);" class="text-reset fs-16 px-1"> <i
-                                                class="ri-delete-bin-2-line"></i></a>
-                                    </td>
+                                    <td>{{ paciente.paciente_id }}</td>
+                                    <td>{{ paciente.data_exame }}</td>
+                                    <td>{{ paciente.conclusao }}</td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

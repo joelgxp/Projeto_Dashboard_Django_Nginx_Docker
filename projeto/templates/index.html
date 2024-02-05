@@ -72,17 +72,6 @@
                             <span></span>
                         </div>
                     </button>
-
-                    <!-- Topbar Search Form -->
-                    <div class="app-search d-none d-lg-block">
-                        <form>
-                            <div class="input-group">
-                                <input type="search" class="form-control" name="search" id="top-search"
-                                    placeholder="Pesquise...">
-                                <span class="ri-search-line search-icon text-muted"></span>
-                            </div>
-                        </form>
-                    </div>
                 </div>
 
                 <ul class="topbar-menu d-flex align-items-center gap-3">
@@ -103,7 +92,7 @@
                         <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
                             aria-haspopup="false" aria-expanded="false">
                             <i class="ri-notification-3-line fs-22"></i>
-                            <span class="noti-icon-badge badge text-bg-pink">3</span>
+                            <span class="noti-icon-badge badge text-bg-pink">0</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg py-0">
                             <div class="p-2 border-top-0 border-start-0 border-end-0 border-dashed border">
@@ -150,7 +139,7 @@
                         <a class="nav-link dropdown-toggle arrow-none nav-user" data-bs-toggle="dropdown" href="#"
                             role="button" aria-haspopup="false" aria-expanded="false">
                             <span class="d-lg-block d-none">
-                                <h5 class="my-0 fw-normal">Joel <i
+                                <h5 class="my-0 fw-normal">Olá, {{ request.user.username }}<i
                                         class="ri-arrow-down-s-line d-none d-sm-inline-block align-middle"></i></h5>
                             </span>
                         </a>
@@ -214,7 +203,7 @@
                         </a>
                     </li>
 
-                    <li class="side-nav-item">
+<!--                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarPagesAuth" aria-expanded="false"
                             aria-controls="sidebarPagesAuth" class="side-nav-link">
                             <i class="ri-login-box-line"></i>
@@ -228,7 +217,7 @@
                                 </li>
                             </ul>
                         </div>
-                    </li>
+                    </li> -->
 
                     <li class="side-nav-item">
                         <a data-bs-toggle="collapse" href="#sidebarExtendedUI" aria-expanded="false"
