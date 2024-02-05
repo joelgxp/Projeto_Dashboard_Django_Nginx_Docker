@@ -1,28 +1,28 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.messages import constants
+from django.contrib import messages
 
 
 def auth_login(request):
     if request.method == 'GET':
-        return render(request, 'auth-login.html', {
-            'form' : AuthenticationForm
-        })
+        return render(request, 'auth-login.html')
         
-    else:
+    elif request.method == 'POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        print(username, password)     
+        user = authenticate(request, username=username, password=password)
         
-        user = authenticate(
-            request, email=request.POST['email'], password=request.POST['password'])
-
-        if user is None:
-            return render(request, 'auth-login.html', {
-                'form' : AuthenticationForm,
-                "error" : "Usuário ou senha inválido."                
-            })
-        else:
+        if user:
             login(request, user)
-            return redirect('/index')
-        
+            return redirect('dashboard')
+        else:
+            messages.add_message(request, constants.ERROR, 'Usuario ou senha inválidos.')
+            return redirect('auth_login')
+
+@login_required        
 def auth_logout(request):
     return render(request, 'auth-logout.html')
         

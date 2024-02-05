@@ -1,31 +1,36 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
+from datetime import datetime
 
-from index.models import PacienteModel, PacienteExameForm
 
+from index.models import Paciente, PacienteExameForm, PacienteExame
+
+@login_required
 def atendimento(request):
     if request.method == 'GET':
-        pacientes_lista = PacienteModel.objects.all()
-        if pacientes_lista.filter(atendido=True):
-            pacientes = PacienteModel.objects.filter(atendido=True)
-            return render(request, 'atendimento.html', {'pacientes_em_atendimento': pacientes})
-        else:
-            pacientes = PacienteModel.objects.filter(atendido=False)
-            return render(request, 'atendimento.html', {'pacientes_atendidos': pacientes})
+        pacientes_lista = Paciente.objects.all()
+        return render(request, 'atendimento.html', {'pacientes_em_atendimento': Paciente.objects.filter(atendido=True), 'pacientes_atendidos': PacienteExame.objects.filter(data_exame=datetime.now()), 'pacientes_lista': pacientes_lista})
+        
     elif request.method == 'POST':
         
         return render(request, 'atendimento.html')
-    
+
+@login_required    
 def atendimento_preenche_exame(request, id):
     
-    paciente = PacienteModel.objects.get(id=id)
-    paciente_id = paciente.id
+    paciente = Paciente.objects.get(id=id)
     
     if request.method == 'POST':    
         form = PacienteExameForm(request.POST)
         if form.is_valid():
+            paciente.atendido = 0
+            paciente.save()
+            
             exame = form.save(commit=False)
-            exame.paciente = paciente_id
+            exame.paciente = paciente
             exame.save()
+            return redirect('atendimento')
         
     else:
         form = PacienteExameForm()
