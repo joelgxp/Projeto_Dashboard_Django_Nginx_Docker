@@ -1,27 +1,10 @@
-import uuid
-import os
-
 from django.db import models
 from django import forms
-from django.core.validators import validate_image_file_extension
-from django.core.exceptions import ValidationError
+from django.contrib.auth.models import AbstractUser
 
 from localflavor.br.models import BRCPFField
 
-
-def nome_arquivo_foto(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = '%s.%s' % (uuid.uuid4(), ext)
-    
-    return os.path.join('usuarios_fotos', filename)
-
-def nome_arquivo_documento(instance, filename):
-    ext = filename.split('.')[-1]
-    filename = '%s.%s' % (uuid.uuid4(), ext)
-    
-    return os.path.join('documentos_fotos', filename)
-
-class PacienteModel(models.Model):
+class Paciente(models.Model):
     CATEGORIA_CHOICES = (
         ('A', "A"),
         ('B', "B"),
@@ -78,18 +61,18 @@ class PacienteModel(models.Model):
     def __str__(self):
         return f"{self.guia, self.registro, self.categoria, self.solicitacao, self.data_habilitacao, self.nome_completo, self.data_nascimento, self.sexo}"
     
-class UsuarioModel(models.Model):
-    nome = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)
-    senha = models.CharField(max_length=255)
+class Usuario(AbstractUser):
+    nome = models.CharField(max_length=255)    
     ativo = models.BooleanField(default=True)
+    
+    REQUIRED_FIELDS = ['email', 'password']
 
     def __str__(self):
-        return f"{self.nome} - {self.email}"
+        return f"{self.username, self.email, self.password, self.last_login, self.is_superuser, self.is_staff, self.is_active, self.date_joined, self.ativo}"
     
 class PacienteForm(forms.ModelForm):
     class Meta:
-        model = PacienteModel
+        model = Paciente
         fields = ['guia', 
                   'registro', 
                   'categoria', 
@@ -156,7 +139,7 @@ class PacienteExame(models.Model):
         ('sim', 'Sim'),
         ('nao', 'Não'),
     )
-    paciente = models.ForeignKey(PacienteModel, on_delete=models.CASCADE)    
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)    
     data_exame = models.DateField()
     visao_le = models.IntegerField()
     visao_ld = models.IntegerField()
@@ -165,7 +148,7 @@ class PacienteExame(models.Model):
     campo_visual_ld = models.IntegerField()
     exame_validade = models.DateField()
     conclusao = models.CharField(choices=CHOICES_CONCLUSAO, max_length=10)
-    complemento = models.CharField(max_length=255, null=True)
+    complemento = models.CharField(max_length=255, null=True, blank=True)
     
 class PacienteExameForm(forms.ModelForm):
     class Meta:
