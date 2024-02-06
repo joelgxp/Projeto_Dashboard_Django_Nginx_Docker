@@ -10,7 +10,7 @@ from index.models import Paciente, PacienteExameForm, PacienteExame
 def atendimento(request):
     if request.method == 'GET':
         pacientes_lista = Paciente.objects.all()
-        return render(request, 'atendimento.html', {'pacientes_em_atendimento': Paciente.objects.filter(atendido=True), 'pacientes_atendidos': PacienteExame.objects.filter(data_exame=datetime.now()), 'pacientes_lista': pacientes_lista})
+        return render(request, 'atendimento.html', {'pacientes_em_atendimento': Paciente.objects.filter(atendido=1), 'pacientes_atendidos': PacienteExame.objects.filter(data_exame=datetime.now()), 'pacientes_lista': pacientes_lista})
         
     elif request.method == 'POST':
         
