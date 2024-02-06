@@ -35,7 +35,7 @@ urlpatterns = [
     path('paciente/', paciente_view.paciente, name='paciente'),
     path('paciente/cadastro/', paciente_view.paciente_cadastro, name='paciente_cadastro'),
     path('paciente/editar/<int:id>/', paciente_view.paciente_editar, name='paciente_editar'),
-    path('paciente/encaminhar/<int:id>/', paciente_view.paciente_encaminha_atend, name='paciente_encaminhar'),
+    path('paciente/impressao/<int:id>/', paciente_view.paciente_ficha_impressao, name='paciente_ficha_impressao'),
     path('paciente/fichamedica/<int:id>/', paciente_view.paciente_ficha_impressao, name='paciente_fichamedica'),
     
     
