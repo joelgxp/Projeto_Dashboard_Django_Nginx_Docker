@@ -26,14 +26,18 @@ class Paciente(models.Model):
         ('MASCULINO', "Masculino"),
         ('FEMININO', "Feminino")
     )
+    ENCAMINHA_EXAME_CHOICES = (
+        ('1', "SIM"),
+        ('2', "NÃO")
+    )
     
     guia = models.IntegerField(null=False, blank=False)
-    registro = models.IntegerField(null=False, blank=False)
+    registro = models.CharField(max_length=9, null=False, blank=False)
     categoria = models.CharField(max_length=5, choices=CATEGORIA_CHOICES)
     solicitacao = models.CharField(max_length=25, choices=SOLICITACAO_CHOICES, null=False, blank=False)
-    data_cadastro = models.DateTimeField(auto_now_add=True)
+    data_cadastro = models.DateField(null=False, blank=False)
     data_habilitacao = models.DateField(null=False, blank=False)
-    nome_completo = models.CharField(max_length=200, null=False, blank=False)
+    nome_completo = models.CharField(max_length=80, null=False, blank=False)
     data_nascimento = models.DateField(null=False, blank=False)
     sexo = models.CharField(max_length=25, choices=SEXO_CHOICES, null=False, blank=False)
     uf_emissor = models.CharField(max_length=2, null=False, blank=False)
@@ -42,9 +46,9 @@ class Paciente(models.Model):
     uf_naturalidade = models.CharField(max_length=2, null=False, blank=False)
     naturalidade = models.CharField(max_length=45, null=False, blank=False)
     
-    nome_mae = models.CharField(max_length=200, null=False, blank=False)
-    nome_pai = models.CharField(max_length=200, null=False, blank=False)
-    logradouro = models.CharField(max_length=200, null=False, blank=False)
+    nome_mae = models.CharField(max_length=80, null=False, blank=False)
+    nome_pai = models.CharField(max_length=80, null=False, blank=False)
+    logradouro = models.CharField(max_length=80, null=False, blank=False)
     numero = models.CharField(max_length=10, null=False, blank=False)
     bairro = models.CharField(max_length=45, null=False, blank=False)
     uf_cidade = models.CharField(max_length=2, null=False, blank=False)
@@ -53,13 +57,14 @@ class Paciente(models.Model):
     complemento = models.CharField(max_length=45, null=False, blank=False)
     cpf = BRCPFField(max_length=14, null=False, blank=False)
     celular = models.CharField(max_length=15, null=False, blank=False)
-    atendido = models.BooleanField(default=False)
+    atendido = models.CharField(max_length=5, choices=ENCAMINHA_EXAME_CHOICES, null=False, blank=False)
+
     hora_cadastro = models.DateTimeField(auto_now_add=True)
     
     ativo = models.BooleanField(default=True)
     
     def __str__(self):
-        return f"{self.guia, self.registro, self.categoria, self.solicitacao, self.data_habilitacao, self.nome_completo, self.data_nascimento, self.sexo}"
+        return f"{self.guia, self.registro, self.categoria, self.solicitacao, self.data_habilitacao, self.nome_completo, self.data_nascimento, self.sexo, self.atendido}"
     
 class Usuario(AbstractUser):
     nome = models.CharField(max_length=255)    
@@ -68,7 +73,7 @@ class Usuario(AbstractUser):
     REQUIRED_FIELDS = ['email', 'password']
 
     def __str__(self):
-        return f"{self.username, self.email, self.password, self.last_login, self.is_superuser, self.is_staff, self.is_active, self.date_joined, self.ativo}"
+        return f"{self.username, self.email, self.password, self.last_login, self.is_superuser, self.is_staff, self.is_active, self.date_joined, self.ativo, self.atendido}"
     
 class PacienteForm(forms.ModelForm):
     class Meta:
@@ -77,6 +82,7 @@ class PacienteForm(forms.ModelForm):
                   'registro', 
                   'categoria', 
                   'solicitacao',
+                  'data_cadastro',
                   'data_habilitacao',
                   'nome_completo',
                   'data_nascimento',
@@ -96,15 +102,17 @@ class PacienteForm(forms.ModelForm):
                   'cep',
                   'complemento',
                   'cpf',
-                  'celular'
+                  'celular',
+                  'atendido'
                   ]
         
         widgets = {
-            'guia': forms.NumberInput(attrs={'class': 'form-control', 'type': 'number'}),
-            'registro': forms.NumberInput(attrs={'class': 'form-control', 'type': 'number'}),
+            'guia': forms.TextInput(attrs={'class': 'form-control', 'type': 'number'}),
+            'registro': forms.TextInput(attrs={'class': 'form-control', 'type': 'number'}),
             'categoria': forms.Select(attrs={'class': 'form-select'}),
             'solicitacao': forms.Select(attrs={'class': 'form-select'}),
-            'data_habilitacao': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'data_cadastro': forms.DateInput(attrs={'class': 'form-control'}),
+            'data_habilitacao': forms.DateInput(attrs={'class': 'form-control'}),
             
             'identidade': forms.TextInput(attrs={'class': 'form-control'}),
             'orgao_emissor': forms.TextInput(attrs={'class': 'form-control'}),
@@ -112,7 +120,7 @@ class PacienteForm(forms.ModelForm):
             'nacionalidade': forms.TextInput(attrs={'class': 'form-select'}),
             
             'nome_completo': forms.TextInput(attrs={'class': 'form-control'}),
-            'data_nascimento': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'data_nascimento': forms.DateInput(attrs={'class': 'form-control'}),
             'sexo': forms.Select(attrs={'class': 'form-select'}),
             'uf_emissor': forms.TextInput(attrs={'class': 'form-control'}),
             'uf_naturalidade': forms.TextInput(attrs={'class': 'form-control'}),
@@ -127,6 +135,8 @@ class PacienteForm(forms.ModelForm):
             'complemento': forms.TextInput(attrs={'class': 'form-control'}),
             'cpf': forms.TextInput(attrs={'class': 'form-control'}),
             'celular': forms.TextInput(attrs={'class': 'form-control'}),
+            
+            'atendido': forms.Select(attrs={'class': 'form-select'}),
             
         }
         
