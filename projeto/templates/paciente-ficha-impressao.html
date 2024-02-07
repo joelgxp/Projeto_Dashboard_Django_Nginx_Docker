@@ -1,122 +1,129 @@
+{% extends 'index.html' %}
+{% block content %}
+
 <main>
-    <div class="container">
+    <div class="ficha-impressao">
+        <br>
+        <br>
         <p>CLIMPÉ - Clínica Médico-Psicotécnica de Guaxupé</p>
-        <div class="linha">
-            <div>
-                <label for="inputGuia" class="form-label">Guia</label>
-                <input type="text" class="form-control" id="inputGuia">
+        <div class="row mb-0">
+            <div class="col-2">
+                <label for="inputGuia">Guia: </label>          
+                {{ paciente.guia }}      
             </div>
-            <div>
-                <label for="inputRegistro" class="form-label">Registro</label>
-                <input type="text" class="form-control" id="inputRegistro">
+            <div class="col-4">
+                <label for="inputRegistro">Registro: </label>
+                {{ paciente.registro }}
             </div>
-            <div>
-                <label for="inputDataCadastro" class="form-label">Data Cadastro</label>
-                <input type="date" class="form-control" id="inputDataCadastro">
+            <div class="col-6">
+                <label for="inputDataCadastro">Data Cadastro: </label>
+                {{ paciente.data_cadastro | date:"d/m/Y" }}
             </div>
         </div>
-        <div class="linha">
-            <div>
+        <div class="row mb-0">
+            <div class="col-4">
                 <label for="inputSolicitacao" class="form-label">Solicitação</label>
-                <input type="text" class="form-select" id="inputSolicitacao">
-
+                {{ paciente.solicitacao }}
             </div>
-            <div>
+            <div class="col-4">
                 <label for="inputCategoria" class="form-label">Categoria</label>
-                <input type="text" class="form-select" id="inputCategoria">
+                {{ paciente.categoria }}
             </div>
         </div>
 
 
-        <div class="linha">
-            <div>
+        <div class="row mb-0">
+            <div class="col-5">
                 <label for="inputNomeCandidato" class="form-label">Nome:</label>
-                <input type="text" class="form-control" id="inputNomeCandidato">
+                {{ paciente.nome_completo }}
             </div>
-            <div>
+            <div class="col-4">
                 <label for="inputNascimento" class="form-label">Nascimento</label>
-                <input type="date" class="form-control" id="inputNascimento">
+                {{ paciente.data_nascimento | date:"d/m/Y" }}
             </div>
-            <div>
+            <div class="col-3">
                 <label for="inputSexo" class="form-label">Sexo</label>
-                <input type="text" class="form-select" id="inputSexo">
+                {{ paciente.sexo }}
             </div>
         </div>
 
-        <div class="linha">
-            <div>
+        <div class="row mb-0">
+            <div class="col-4">
                 <label for="inputRgIdentidade" class="form-label">Identidade</label>
-                <input type="text" class="form-control" id="inputRgIdentidade">
+                {{ paciente.identidade }}
             </div>
-            <div>
+            <div class="col-2">
                 <label for="inputRgOrgaoUF" class="form-label">UF</label>
-                <input type="text" class="form-select" id="inputRgOrgaoUF">
+                {{ paciente.orgao_emissor }}
             </div>
-            <div>
+            <div class="col-4">
                 <label for="inputNaturalidade" class="form-label">Naturalidade</label>
-                <input type="text" class="form-select" id="inputNaturalidade">
+                {{ paciente.naturalidade }}
             </div>
-            <div>
+            <div class="col-2">
                 <label for="inputNaturalidadeUF" class="form-label">UF</label>
-                <input type="text" class="form-select" id="inputNaturalidadeUF">
+                {{ paciente.uf_naturalidade }}
             </div>
         </div>
 
-        <div class="linha">
-            <div class="col">
+        <div class="row mb-0">
+            <div class="col-6">
                 <label for="inputNomeMae" class="form-label">Nome da mãe:</label>
-                <input type="text" class="form-control" id="inputNomeMae">
+                {{ paciente.nome_mae }}
             </div>
-            <div class="col">
+            <div class="col-6">
                 <label for="inputNomePai" class="form-label">Nome do pai:</label>
-                <input type="text" class="form-control" id="inputNomePai">
+                {{ paciente.nome_pai }}
+
             </div>
         </div>
 
-        <div class="linha">
+        <div class="row mb-0">
             <div class="col-7">
                 <label for="inputLogradouro" class="form-label">Logradouro</label>
-                <input type="text" class="form-control" id="inputLogradouro">
+                {{ paciente.logradouro }}
             </div>
             <div class="col-2">
                 <label for="inputNumero" class="form-label">Número</label>
-                <input type="text" class="form-control" id="inputNumero">
+                {{ paciente.numero }}
             </div>
-            <div class="col">
+            <div class="col-3">
                 <label for="inputBairro" class="form-label">Bairro</label>
-                <input type="text" class="form-control" id="inputBairro">
+                {{ paciente.bairro }}
             </div>
         </div>
 
-        <div class="linha">
-            <div>
+        <div class="row mb-0">
+            <div class="col-4">
                 <label for="inputCidade" class="form-label">Cidade</label>
-                <input type="text" class="form-select" id="inputCidade">
+                {{ paciente.cidade }}
             </div>
-            <div>
+            <div class="col-2">
                 <label for="inputLogradouroUF" class="form-label">UF</label>
-                <input type="text" class="form-select" id="inputLogradouroUF">
+                {{ paciente.uf_cidade }}
             </div>
-            <div>
+            <div class="col-2">
                 <label for="inputCEP" class="form-label">CEP</label>
-                <input type="text" class="form-control" id="inputCEP" maxlength="8">
+                {{ paciente.cep }}
             </div>
-            <div>
+            <div class="col-2">
                 <label for="inputComplemento" class="form-label">Complemento</label>
-                <input type="text" class="form-control" id="inputComplemento">
+                {{ paciente.complemento }}
             </div>
         </div>
 
-        <div class="linha">
-            <div>
+        <div class="row mb-0">
+            <div class="col-4">
                 <label for="inputCPF" class="form-label">CPF</label>
-                <input type="text" class="form-control" id="inputCPF" maxlength="11">
+                {{ paciente.cpf }}
             </div>
-            <div>
+            <div class="col-4">
                 <label for="inputTelefone" class="form-label">Telefone</label>
-                <input type="text" class="form-control" id="inputTelefone">
+                {{ paciente.celular }}
             </div>
         </div>
 
     </div>
 </main>
+
+{% endblock %}

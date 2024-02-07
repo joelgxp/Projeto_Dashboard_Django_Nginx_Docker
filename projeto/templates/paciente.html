@@ -19,7 +19,7 @@
 <!-- start page lista lider -->
 
 <div class="row">
-    <div class="col-xl-9">
+    <div class="col-xl-10">
         <div class="card">
             <div class="card-header">
                 <div class="row">
@@ -44,12 +44,12 @@
                             <thead>
                                 <tr>
                                     <th class="col1">Guia</th>
-                                    <th class="col6">Registro</th>
-                                    <th class="col2">Nome</th>
-                                    <th class="col3">Categoria</th>
-                                    <th class="col4">CPF</th>
-                                    <th class="col5">Data Cadastro</th>
-                                    <th class="col5">Ações</th>
+                                    <th class="col2">Registro</th>
+                                    <th class="col6">Nome</th>
+                                    <th class="col2">Categoria</th>
+                                    <th class="col3">CPF</th>
+                                    <th class="col3">Data Cadastro</th>
+                                    <th class="col3">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,11 +60,11 @@
                                     <td>{{ paciente.nome_completo }}</td>
                                     <td>{{ paciente.categoria }}</td>
                                     <td>{{ paciente.cpf }}</td>
-                                    <td>{{ paciente.hora_cadastro }}</td>
+                                    <td>{{ paciente.data_cadastro | date:"d/m/Y" }}</td>
                                     <td>
-                                        <a href="{% url 'paciente_editar' paciente.id %}" class="text-reset fs-16 px-1"> <i class="ri-edit-2-line"></i></a>
-                                        <a href="{% url 'paciente_ficha_impressao' paciente.id %}" class="text-reset fs-16 px-1"> <i class="ri-printer-line"></i></a>
-                                        
+                                        <a href="{% url 'paciente_editar' paciente.id %}" class="text-reset fs-16 px-1" title="Editar"> <i class="ri-edit-2-line"></i></a>
+                                        <a href="{% url 'paciente_ficha_impressao' paciente.id %}" class="text-reset fs-16 px-1" title="Imprimir Ficha"> <i class="ri-printer-line"></i></a>
+                                        <a href="{% url 'paciente_exames_lista' paciente.id %}" class="text-reset fs-16 px-1" title="Ver Exames"> <i class="ri-eye-line"></i></a>                                        
                                     </td>
                                 </tr>
                                 {% endfor %}

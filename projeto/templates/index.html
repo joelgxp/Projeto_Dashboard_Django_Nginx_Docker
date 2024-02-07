@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Dashboard</title>
-    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Adicione o link para o manifesto -->
     <link rel="manifest" href="{% static 'manifest.json' %}">
@@ -36,29 +36,6 @@
             <div class="topbar container-fluid">
                 <div class="d-flex align-items-center gap-1">
 
-                    <!-- Topbar Brand Logo -->
-                    <div class="logo-topbar">
-                        <!-- Logo light -->
-                        <a href="/index" class="logo-light">
-                            <span class="logo-lg">
-                                <img src="" alt="logo">
-                            </span>
-                            <span class="logo-sm">
-                                <img src="{% static 'image/logo-sm.png' %}" alt="small logo">
-                            </span>
-                        </a>
-
-                        <!-- Logo Dark -->
-                        <a href="/index" class="logo-dark">
-                            <span class="logo-lg">
-                                <img src="" alt="dark logo">
-                            </span>
-                            <span class="logo-sm">
-                                <img src="{% static 'image/logo-sm.png' %}" alt="small logo">
-                            </span>
-                        </a>
-                    </div>
-
                     <!-- Sidebar Menu Toggle Button -->
                     <button class="button-toggle-menu">
                         <i class="ri-menu-line"></i>
@@ -75,18 +52,6 @@
                 </div>
 
                 <ul class="topbar-menu d-flex align-items-center gap-3">
-                    <li class="dropdown d-lg-none">
-                        <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
-                            aria-haspopup="false" aria-expanded="false">
-                            <i class="ri-search-line fs-22"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
-                            <form class="p-3">
-                                <input type="search" class="form-control" name="search2" placeholder="Search ..."
-                                    aria-label="Recipient's username">
-                            </form>
-                        </div>
-                    </li>
 
                     <li class="dropdown notification-list">
                         <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button"
@@ -170,7 +135,7 @@
         <div class="leftside-menu">
 
             <!-- Brand Logo Light -->
-            <a href="/index" class="logo logo-light">
+            <a href="/dashboard" class="logo logo-light">
                 <span class="logo-lg">
                     <img src="{% static 'image/logo.png' %}" alt="logo">
                 </span>
@@ -180,7 +145,7 @@
             </a>
 
             <!-- Brand Logo Dark -->
-            <a href="/index" class="logo logo-dark">
+            <a href="/dashboard" class="logo logo-dark">
                 <span class="logo-lg">
                     <img src="{% static 'image/logo-dark.png' %}" alt="dark logo">
                 </span>
@@ -203,59 +168,21 @@
                         </a>
                     </li>
 
-<!--                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#sidebarPagesAuth" aria-expanded="false"
-                            aria-controls="sidebarPagesAuth" class="side-nav-link">
-                            <i class="ri-login-box-line"></i>
-                            <span> Autenticação </span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sidebarPagesAuth">
-                            <ul class="side-nav-second-level">
-                                <li>
-                                    <a href="/auth_login">Login</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li> -->
-
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#sidebarExtendedUI" aria-expanded="false"
-                            aria-controls="sidebarExtendedUI" class="side-nav-link">
+                        <a href="/paciente" class="side-nav-link">
                             <i class="ri-user-add-line"></i>
                             <span> Cadastros </span>
-                            <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarExtendedUI">
-                            <ul class="side-nav-second-level">
-                                <li>
-                                    <a href="/paciente">Candidatos</a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
 
                     <li class="side-nav-item">
-                        <a data-bs-toggle="collapse" href="#sidebarPagesAuth" aria-expanded="false"
-                            aria-controls="sidebarPagesAuth" class="side-nav-link">
+                        <a href="/atendimento" class="side-nav-link">
                             <i class="ri-team-line"></i>
                             <span> Atendimento </span>
-                            <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebarPagesAuth">
-                            <ul class="side-nav-second-level">
-                                <li>
-                                    <a href="/atendimento">Fila Atendimento</a>
-                                </li>
-                            </ul>
-                        </div>
                     </li>
-
                 </ul>
-
                 <!--- End Sidemenu -->
-
-                <div class="clearfix"></div>
             </div>
         </div>
         <!-- ========== Left Sidebar End ========== -->
@@ -274,7 +201,6 @@
                     {% endblock %}
 
                 </div>
-
             </div>
 
             <!-- Footer Start -->
