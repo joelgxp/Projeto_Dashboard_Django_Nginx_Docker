@@ -36,11 +36,9 @@ urlpatterns = [
     path('paciente/cadastro/', paciente_view.paciente_cadastro, name='paciente_cadastro'),
     path('paciente/editar/<int:id>/', paciente_view.paciente_editar, name='paciente_editar'),
     path('paciente/impressao/<int:id>/', paciente_view.paciente_ficha_impressao, name='paciente_ficha_impressao'),
-    path('paciente/fichamedica/<int:id>/', paciente_view.paciente_ficha_impressao, name='paciente_fichamedica'),
-    
+    path('paciente/exames/lista/<int:id>/', paciente_view.paciente_exames_lista, name='paciente_exames_lista'),    
     
     path('atendimento/', atendimento_view.atendimento, name='atendimento'),
-    path('atendimento/exame/<int:id>/', atendimento_view.atendimento_preenche_exame, name='atendimento_preencher_exame'),
-    path('atendimento/exame/', atendimento_view.atendimento_preenche_exame, name='atendimento_preencher_exame'),    
+    path('atendimento/exame/<int:id>/', atendimento_view.atendimento_preenche_exame, name='atendimento_preencher_exame'),  
     
 ]

@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 
-from index.models import Paciente
+from index.models import Paciente, PacienteExame
 
 @login_required
 def index(request):
@@ -9,8 +10,11 @@ def index(request):
 
 @login_required
 def dashboard(request):
-    pacientes_em_atendimento = Paciente.objects.filter(atendido=True)
-    return render(request, 'dashboard.html', {'pacientes_em_atendimento': pacientes_em_atendimento, 'pacientes_lista': Paciente.objects.all()})
+    pacientes_em_atendimento = Paciente.objects.filter(atendido=1)
+    pacientes_atendidos = PacienteExame.objects.filter(data_exame=datetime.now())
+    return render(request, 'dashboard.html', {'pacientes_em_atendimento': pacientes_em_atendimento, 
+                                              'pacientes_atendidos': pacientes_atendidos, 
+                                              'pacientes_lista': Paciente.objects.all()})
 
 @login_required
 def profile(request):

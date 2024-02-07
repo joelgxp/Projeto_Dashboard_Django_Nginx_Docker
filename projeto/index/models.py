@@ -73,7 +73,7 @@ class Usuario(AbstractUser):
     REQUIRED_FIELDS = ['email', 'password']
 
     def __str__(self):
-        return f"{self.username, self.email, self.password, self.last_login, self.is_superuser, self.is_staff, self.is_active, self.date_joined, self.ativo, self.atendido}"
+        return f"{self.username, self.email, self.password, self.last_login, self.is_superuser, self.is_staff, self.is_active, self.date_joined, self.ativo}"
     
 class PacienteForm(forms.ModelForm):
     class Meta:

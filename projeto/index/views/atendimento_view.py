@@ -37,3 +37,4 @@ def atendimento_preenche_exame(request, id):
         print('erro')
     
     return render(request, 'atendimento-exame.html', {'form': form, 'paciente': paciente})
+

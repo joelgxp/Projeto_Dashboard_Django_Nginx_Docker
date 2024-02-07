@@ -1,9 +1,11 @@
 from django.shortcuts import redirect, render
 from django.contrib.messages import constants
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from index.models import Usuario
 
+@login_required
 def auth_register(request):    
     if request.method == 'GET':
         return render(request, 'auth-register.html')
