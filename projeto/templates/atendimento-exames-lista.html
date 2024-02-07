@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<!-- start breadcumbss title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-left">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/dashboard">App</a></li>
+                    <li class="breadcrumb-item"><a href="/paciente">Paciente</a></li>
+
+                    <li class="breadcrumb-item active">Exame</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<!-- start page lista lider -->
+<div class="row">
+    <div class="col-xl-10">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-7">
+                    </div>
+                    <div class="col-sm-5">
+                        <div class="app-search d-none d-lg-block">
+                            <form>
+                                <div class="input-group">
+                                    <input type="search" class="form-control" name="search" id="search"
+                                        placeholder="Pesquise..." onkeyup="filterTable()">
+                                    <span class="ri-search-line search-icon text-muted"></span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive-sm" id="table-responsive-sm">
+                        <table class="table table-striped table-centered mb-0">
+                            <thead>
+                                <tr>
+                                    <th class="col3">Data Exame</th>
+                                    <th class="col2">Visão LE</th>
+                                    <th class="col2">Visão LD</th>
+                                    <th class="col2">Correção Visual</th>
+                                    <th class="col3">Exame Validade</th>
+                                    <th class="col2">Conclusão</th>
+                                    <th class="col5">Complemento</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for exame in exames %}
+                                <tr>
+                                    <td>{{ exame.data_exame | date:"d/m/Y" }}</td>
+                                    <td>{{ exame.visao_le }}</td>
+                                    <td>{{ exame.visao_ld }}</td>
+                                    <td>{{ exame.correcao_visual }}</td>
+                                    <td>{{ exame.exame_validade | date:"d/m/Y" }}</td>
+                                    <td>{{ exame.conclusao }}</td>
+                                    <td>{{ exame.complemento }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end page lista paciente -->
+
+    {% endblock %}
