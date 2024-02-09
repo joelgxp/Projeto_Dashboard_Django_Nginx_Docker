@@ -31,7 +31,6 @@ def paciente_cadastro(request):
 @login_required
 def paciente_editar(request, id):    
     paciente = Paciente.objects.get(id=id)
-    print(paciente)
     
     if request.method == 'POST':
         form = PacienteForm(request.POST, instance=paciente)

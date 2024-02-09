@@ -32,9 +32,10 @@ def atendimento_preenche_exame(request, id):
             exame.save()
             return redirect('atendimento')
         
-    else:
-        form = PacienteExameForm()
-        print('erro')
+        else:
+            print('erro')
+        
+    form = PacienteExameForm()
     
     return render(request, 'atendimento-exame.html', {'form': form, 'paciente': paciente})
 
