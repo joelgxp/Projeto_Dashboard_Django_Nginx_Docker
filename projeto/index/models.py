@@ -3,7 +3,16 @@ from django import forms
 from django.contrib.auth.models import AbstractUser
 
 from localflavor.br.models import BRCPFField
+    
+class Usuario(AbstractUser):
+    nome = models.CharField(max_length=255)    
+    ativo = models.BooleanField(default=True)
+    
+    REQUIRED_FIELDS = ['email', 'password']
 
+    def __str__(self):
+        return f"{self.username, self.email, self.password, self.last_login, self.is_superuser, self.is_staff, self.is_active, self.date_joined, self.ativo}"
+   
 class Paciente(models.Model):
     CATEGORIA_CHOICES = (
         ('A', "A"),
@@ -17,14 +26,16 @@ class Paciente(models.Model):
         ('AE', "AE")
     )
     SOLICITACAO_CHOICES = (
-        ('PRIMEIRA_HABILITACAO', "Primeira Habilitação"),
-        ('RENOVACAO', "Renovação"),
-        ('ADICAO_CATEGORIA', "Adição de Categoria"),
-        ('MUDANCA_CATEGORIA', "Mudança de Categoria")
+        ('PRIMEIRA_HABILITACAO', "PRIMEIRA HABILITAÇÃO"),
+        ('RENOVACAO', "RENOVAÇÃO"),
+        ('RENOVACAO_ATIV_REM', "RENOVAÇÃO ATIV. REMUNERADA"),
+        ('ADICAO_CATEGORIA', "ADIÇÃO DE CATEGORIA"),
+        ('MUDANCA_CATEGORIA', "MUDANÇA DE CATEGORIA"),
+        ('ALTERACAO_DADOS', "ALTERAÇÃO DE DADOS")
     )
     SEXO_CHOICES = (
-        ('MASCULINO', "Masculino"),
-        ('FEMININO', "Feminino")
+        ('MASCULINO', "MASCULINO"),
+        ('FEMININO', "FEMININO")
     )
     ENCAMINHA_EXAME_CHOICES = (
         ('1', "SIM"),
@@ -34,7 +45,7 @@ class Paciente(models.Model):
     guia = models.IntegerField(null=False, blank=False)
     registro = models.CharField(max_length=9, null=False, blank=False)
     categoria = models.CharField(max_length=5, choices=CATEGORIA_CHOICES)
-    solicitacao = models.CharField(max_length=25, choices=SOLICITACAO_CHOICES, null=False, blank=False)
+    solicitacao = models.CharField(max_length=45, choices=SOLICITACAO_CHOICES, null=False, blank=False)
     data_cadastro = models.DateField(null=False, blank=False)
     data_habilitacao = models.DateField(null=False, blank=False)
     nome_completo = models.CharField(max_length=80, null=False, blank=False)
@@ -65,16 +76,7 @@ class Paciente(models.Model):
     
     def __str__(self):
         return f"{self.guia, self.registro, self.categoria, self.solicitacao, self.data_habilitacao, self.nome_completo, self.data_nascimento, self.sexo, self.atendido}"
-    
-class Usuario(AbstractUser):
-    nome = models.CharField(max_length=255)    
-    ativo = models.BooleanField(default=True)
-    
-    REQUIRED_FIELDS = ['email', 'password']
-
-    def __str__(self):
-        return f"{self.username, self.email, self.password, self.last_login, self.is_superuser, self.is_staff, self.is_active, self.date_joined, self.ativo}"
-    
+ 
 class PacienteForm(forms.ModelForm):
     class Meta:
         model = Paciente
@@ -176,4 +178,27 @@ class PacienteExameForm(forms.ModelForm):
             'complemento': forms.TextInput(attrs={'class': 'form-control'}),
             
         }
+        
+class FluxoDeCaixa(models.Model):
+    CHOICES_METODO_PAGAMENTO = (
+        ('PIX', "PIX"),
+        ('DINHEIRO', "DINHEIRO"),
+        ('PIX/DINHEIRO', "PIX/DINHEIRO"),
+    )
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    data = models.DateField(auto_now_add=True)
+    valor_pix = models.FloatField(null=False, blank=False)
+    valor_dinheiro = models.FloatField(null=False, blank=False)
+    valor_total = models.FloatField(null=True, blank=True)
+    metodo_pagamento = models.CharField(choices=CHOICES_METODO_PAGAMENTO, max_length=45)
     
+class FluxoDeCaixaForm(forms.ModelForm):
+    class Meta:
+        model = FluxoDeCaixa
+        fields = ['valor_pix', 'valor_dinheiro', 'valor_total', 'metodo_pagamento']
+        widgets = {
+            'valor_pix': forms.TextInput(attrs={'class': 'form-control'}),
+            'valor_dinheiro': forms.TextInput(attrs={'class': 'form-control'}),
+            'valor_total': forms.TextInput(attrs={'class': 'form-control'}),
+            'metodo_pagamento': forms.Select(attrs={'class': 'form-select'}),
+        }
