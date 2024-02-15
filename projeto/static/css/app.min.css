@@ -6645,7 +6645,7 @@ textarea.form-control-lg {
     word-wrap: break-word
 }
 
-.modal {
+.modal-bkp {
     --tz-modal-zindex: 1055;
     --tz-modal-width: 90%;
     --tz-modal-padding: 1rem;
@@ -16012,56 +16012,6 @@ textarea.form-control-lg {
     }
 }
 
-@media print {
-    .d-print-inline {
-        display: inline!important
-    }
-
-    .d-print-inline-block {
-        display: inline-block!important
-    }
-
-    .d-print-block {
-        display: block!important
-    }
-
-    .d-print-grid {
-        display: grid!important
-    }
-
-    .d-print-inline-grid {
-        display: inline-grid!important
-    }
-
-    .d-print-table {
-        display: table!important
-    }
-
-    .d-print-table-row {
-        display: table-row!important
-    }
-
-    .d-print-table-cell {
-        display: table-cell!important
-    }
-
-    .d-print-flex {
-        display: -webkit-box!important;
-        display: -ms-flexbox!important;
-        display: flex!important
-    }
-
-    .d-print-inline-flex {
-        display: -webkit-inline-box!important;
-        display: -ms-inline-flexbox!important;
-        display: inline-flex!important
-    }
-
-    .d-print-none {
-        display: none!important
-    }
-}
-
 .logo-lg img {
     height: var(--tz-logo-lg-height)
 }
@@ -18542,6 +18492,15 @@ select.form-control-sm:not([size]):not([multiple]) {
 }
 
 @media print {
+    @page {
+        margin-top: 20mm;
+        margin-bottom: 20mm;
+        margin-left: 110mm;
+        margin-right: 0mm;
+    }
+    .no-print {
+        display: none;
+    }
     .end-bar,.footer,.leftside-menu,.navbar-custom,.page-title-box {
         display: none
     }
@@ -22175,15 +22134,55 @@ th.col6 {
     width: 30%; /* Defina a largura desejada para a terceira coluna */
 }
 
-.ficha-impressao {
-    
-    width: 210mm;
-    height: 200mm;
-    margin: 0;
+.ficha-impressao {    
+    width: 250mm;
+    height: 100mm;
+    margin-top: 20mm;
+    margin-bottom: 20mm;
+    margin-left: 10mm;
+    margin-right: 0mm;
     overflow: hidden;
     position: relative;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 1.0rem;
+    font-size: 1.3rem;
     line-height: 1.5rem;
 }
+.no-print {
+    display: none;
+}
 
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; 
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  

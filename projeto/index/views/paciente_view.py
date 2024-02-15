@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from index.models import Paciente, PacienteForm, PacienteExame
+from index.models import Paciente, PacienteForm, Exame
 
 @login_required
 def paciente(request):
@@ -51,7 +51,7 @@ def paciente_ficha_impressao(request, id):
 
 @login_required
 def paciente_exames_lista(request, id):
-    exame = PacienteExame.objects.filter(paciente=id)
+    exame = Exame.objects.filter(paciente=id)
     
     return render(request, 'atendimento-exames-lista.html', {'exames': exame})
 

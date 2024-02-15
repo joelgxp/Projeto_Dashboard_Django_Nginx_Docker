@@ -1,6 +1,8 @@
 {% extends 'index.html' %}
 {% block content %}
 
+{% load static %}
+
 <!-- start breadcumbss title -->
 <div class="row">
     <div class="col-12">
@@ -24,7 +26,7 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-sm-7">
-                        <a href="/paciente/cadastro" type="button" class="btn btn-secondary">Criar Exame</a>
+                        <a href="/paciente/cadastro" type="button" class="btn btn-secondary">Cadastrar</a>
                     </div>
                     <div class="col-sm-5">
                         <div class="app-search d-none d-lg-block">
@@ -62,10 +64,21 @@
                                     <td>{{ paciente.cpf }}</td>
                                     <td>{{ paciente.data_cadastro | date:"d/m/Y" }}</td>
                                     <td>
-                                        <a href="{% url 'paciente_editar' paciente.id %}" class="text-reset fs-16 px-1" title="Editar"> <i class="ri-edit-2-line"></i></a>
-                                        <a href="{% url 'paciente_ficha_impressao' paciente.id %}" class="text-reset fs-16 px-1" title="Imprimir Ficha"> <i class="ri-printer-line"></i></a>
-                                        <a href="{% url 'fluxo_caixa_pagamento' paciente.id %}" class="text-reset fs-16 px-1" title="Registrar Pagamento"> <i class="ri-cash-line"></i></a>
-                                        <a href="{% url 'paciente_exames_lista' paciente.id %}" class="text-reset fs-16 px-1" title="Ver Exames"> <i class="ri-eye-line"></i></a>                                        
+                                        <a href="{% url 'paciente_editar' paciente.id %}" class="text-reset fs-16 px-1"
+                                            title="Editar"> <i class="ri-edit-2-line"></i></a>
+                                        <a href="{% url 'paciente_ficha_impressao' paciente.id %}"
+                                            class="text-reset fs-16 px-1" title="Imprimir Ficha"> <i
+                                                class="ri-printer-line"></i></a>
+                                        <a href="{% url 'fluxo_caixa_pagamento' paciente.id %}"
+                                            class="text-reset fs-16 px-1" title="Registrar Pagamento"> <i
+                                                class="ri-cash-line"></i></a>
+                                        <a href="{% url 'paciente_exames_lista' paciente.id %}"
+                                            class="text-reset fs-16 px-1" title="Ver Exames"> <i
+                                                class="ri-eye-line"></i></a>
+                                        <a href="{% url 'atendimento_cadastro' %}"
+                                            class="text-reset fs-16 px-1" title="Criar Atendimento"> <i
+                                                class="ri-nurse-line"></i></a>
+
                                     </td>
                                 </tr>
                                 {% endfor %}

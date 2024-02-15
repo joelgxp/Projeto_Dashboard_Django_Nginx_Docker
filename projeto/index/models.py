@@ -25,27 +25,13 @@ class Paciente(models.Model):
         ('AD', "AD"),
         ('AE', "AE")
     )
-    SOLICITACAO_CHOICES = (
-        ('PRIMEIRA_HABILITACAO', "PRIMEIRA HABILITAÇÃO"),
-        ('RENOVACAO', "RENOVAÇÃO"),
-        ('RENOVACAO_ATIV_REM', "RENOVAÇÃO ATIV. REMUNERADA"),
-        ('ADICAO_CATEGORIA', "ADIÇÃO DE CATEGORIA"),
-        ('MUDANCA_CATEGORIA', "MUDANÇA DE CATEGORIA"),
-        ('ALTERACAO_DADOS', "ALTERAÇÃO DE DADOS")
-    )
     SEXO_CHOICES = (
         ('MASCULINO', "MASCULINO"),
         ('FEMININO', "FEMININO")
-    )
-    ENCAMINHA_EXAME_CHOICES = (
-        ('1', "SIM"),
-        ('2', "NÃO")
-    )
-    
+    )  
     guia = models.IntegerField(null=False, blank=False)
     registro = models.CharField(max_length=9, null=False, blank=False)
     categoria = models.CharField(max_length=5, choices=CATEGORIA_CHOICES)
-    solicitacao = models.CharField(max_length=45, choices=SOLICITACAO_CHOICES, null=False, blank=False)
     data_cadastro = models.DateField(null=False, blank=False)
     data_habilitacao = models.DateField(null=False, blank=False)
     nome_completo = models.CharField(max_length=80, null=False, blank=False)
@@ -68,14 +54,13 @@ class Paciente(models.Model):
     complemento = models.CharField(max_length=45, null=False, blank=False)
     cpf = BRCPFField(max_length=14, null=False, blank=False)
     celular = models.CharField(max_length=15, null=False, blank=False)
-    atendido = models.CharField(max_length=5, choices=ENCAMINHA_EXAME_CHOICES, null=False, blank=False)
 
     hora_cadastro = models.DateTimeField(auto_now_add=True)
     
     ativo = models.BooleanField(default=True)
     
     def __str__(self):
-        return f"{self.guia, self.registro, self.categoria, self.solicitacao, self.data_habilitacao, self.nome_completo, self.data_nascimento, self.sexo, self.atendido}"
+        return f"{self.guia, self.registro, self.categoria, self.data_habilitacao, self.nome_completo, self.data_nascimento, self.sexo}"
  
 class PacienteForm(forms.ModelForm):
     class Meta:
@@ -83,7 +68,6 @@ class PacienteForm(forms.ModelForm):
         fields = ['guia', 
                   'registro', 
                   'categoria', 
-                  'solicitacao',
                   'data_cadastro',
                   'data_habilitacao',
                   'nome_completo',
@@ -104,15 +88,13 @@ class PacienteForm(forms.ModelForm):
                   'cep',
                   'complemento',
                   'cpf',
-                  'celular',
-                  'atendido'
+                  'celular'
                   ]
         
         widgets = {
             'guia': forms.TextInput(attrs={'class': 'form-control', 'type': 'number'}),
             'registro': forms.TextInput(attrs={'class': 'form-control', 'type': 'number'}),
             'categoria': forms.Select(attrs={'class': 'form-select'}),
-            'solicitacao': forms.Select(attrs={'class': 'form-select'}),
             'data_cadastro': forms.DateInput(attrs={'class': 'form-control'}),
             'data_habilitacao': forms.DateInput(attrs={'class': 'form-control'}),
             
@@ -138,33 +120,30 @@ class PacienteForm(forms.ModelForm):
             'cpf': forms.TextInput(attrs={'class': 'form-control'}),
             'celular': forms.TextInput(attrs={'class': 'form-control'}),
             
-            'atendido': forms.Select(attrs={'class': 'form-select'}),
-            
         }
         
-class PacienteExame(models.Model):
+class Exame(models.Model):
     CHOICES_CONCLUSAO = (
-        ('apto', 'Apto'),
-        ('inapto', 'Inapto'),
+        ('apto', 'APTO'),
+        ('inapto', 'INAPTO'),
     )
     CHOICE_CORRECAO_VISUAL = (
-        ('sim', 'Sim'),
-        ('nao', 'Não'),
-    )
-    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)    
-    data_exame = models.DateField()
-    visao_le = models.IntegerField()
-    visao_ld = models.IntegerField()
-    correcao_visual = models.CharField(choices=CHOICE_CORRECAO_VISUAL, max_length=10)
-    campo_visual_le = models.IntegerField()
-    campo_visual_ld = models.IntegerField()
-    exame_validade = models.DateField()
-    conclusao = models.CharField(choices=CHOICES_CONCLUSAO, max_length=10)
+        ('sim', 'SIM'),
+        ('nao', 'NÃO'),
+    )  
+    data_exame = models.DateField(null=True, blank=True)
+    visao_le = models.IntegerField(null=True, blank=True)
+    visao_ld = models.IntegerField(null=True, blank=True)
+    correcao_visual = models.CharField(choices=CHOICE_CORRECAO_VISUAL, max_length=10, null=True, blank=True)
+    campo_visual_le = models.IntegerField(null=True, blank=True)
+    campo_visual_ld = models.IntegerField(null=True, blank=True)
+    exame_validade = models.DateField(null=True, blank=True)
+    conclusao = models.CharField(choices=CHOICES_CONCLUSAO, max_length=10, null=True, blank=True)
     complemento = models.CharField(max_length=255, null=True, blank=True)
     
-class PacienteExameForm(forms.ModelForm):
+class ExameForm(forms.ModelForm):
     class Meta:
-        model = PacienteExame
+        model = Exame
         fields = ['data_exame', 'visao_le', 'visao_ld', 'correcao_visual', 'campo_visual_le', 'campo_visual_ld', 'exame_validade', 'conclusao', 'complemento']
         widgets = {
             'data_exame': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
@@ -176,29 +155,54 @@ class PacienteExameForm(forms.ModelForm):
             'exame_validade': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'conclusao': forms.Select(attrs={'class': 'form-select'}),
             'complemento': forms.TextInput(attrs={'class': 'form-control'}),
-            
         }
         
-class FluxoDeCaixa(models.Model):
+class Pagamento(models.Model):
     CHOICES_METODO_PAGAMENTO = (
         ('PIX', "PIX"),
         ('DINHEIRO', "DINHEIRO"),
         ('PIX/DINHEIRO', "PIX/DINHEIRO"),
     )
-    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
     data = models.DateField(auto_now_add=True)
-    valor_pix = models.FloatField(null=False, blank=False)
-    valor_dinheiro = models.FloatField(null=False, blank=False)
+    valor_pix = models.FloatField(null=False, blank=False, default=0)
+    valor_dinheiro = models.FloatField(null=False, blank=False, default=0)
     valor_total = models.FloatField(null=True, blank=True)
     metodo_pagamento = models.CharField(choices=CHOICES_METODO_PAGAMENTO, max_length=45)
     
-class FluxoDeCaixaForm(forms.ModelForm):
+class PagamentoForm(forms.ModelForm):
     class Meta:
-        model = FluxoDeCaixa
+        model = Pagamento
         fields = ['valor_pix', 'valor_dinheiro', 'valor_total', 'metodo_pagamento']
         widgets = {
             'valor_pix': forms.TextInput(attrs={'class': 'form-control'}),
             'valor_dinheiro': forms.TextInput(attrs={'class': 'form-control'}),
             'valor_total': forms.TextInput(attrs={'class': 'form-control'}),
             'metodo_pagamento': forms.Select(attrs={'class': 'form-select'}),
+        }
+        
+class Atendimento(models.Model):
+    CHOICE_SOLICITACAO = (
+        ('PRIMEIRA_HABILITACAO', "PRIMEIRA HABILITAÇÃO"),
+        ('RENOVACAO', "RENOVAÇÃO"),
+        ('RENOVACAO_ATIV_REM', "RENOVAÇÃO ATIV. REMUNERADA"),
+        ('ADICAO_CATEGORIA', "ADIÇÃO DE CATEGORIA"),
+        ('MUDANCA_CATEGORIA', "MUDANÇA DE CATEGORIA"),
+        ('ALTERACAO_DADOS', "ALTERAÇÃO DE DADOS")
+    )
+    solicitacao = models.CharField(max_length=45, choices=CHOICE_SOLICITACAO, null=False, blank=False)
+    id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    id_exame = models.ForeignKey(Exame, on_delete=models.CASCADE, null=True, blank=True)
+    id_pagamento = models.ForeignKey(Pagamento, on_delete=models.CASCADE)
+    status = models.BooleanField(default=False)
+    
+class AtendimentoForm(forms.ModelForm):
+    class Meta:
+        model = Atendimento
+        fields = ['solicitacao', 'id_paciente', 'id_exame', 'id_pagamento', 'status']
+        widgets = {
+            'solicitacao': forms.Select(attrs={'class': 'form-select'}),    
+            'id_paciente': forms.Select(attrs={'class': 'form-select'}),
+            'id_exame': forms.Select(attrs={'class': 'form-select'}),
+            'id_pagamento': forms.Select(attrs={'class': 'form-select'}),
+            'status': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }

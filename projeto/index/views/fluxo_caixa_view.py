@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 
-from ..models import FluxoDeCaixa, FluxoDeCaixaForm, Paciente
+from ..models import Pagamento, PagamentoForm, Paciente, Exame
 
 def fluxo_caixa(request):
     # Recupera todos os pagamentos
-    tipo_solicitacao = Paciente.objects.filter(solicitacao='PRIMEIRA_HABILITACAO')
+    tipo_solicitacao = Paciente.objects.all()
     print(tipo_solicitacao)
-    pagamentos = FluxoDeCaixa.objects.all()
+    pagamentos = Pagamento.objects.all()
 
     # Inicializa a soma dos valores de dinheiro e pix
     total_dinheiro = 0
@@ -35,9 +35,10 @@ def fluxo_caixa(request):
 def fluxo_caixa_pagamento(request, id):
     
     paciente = Paciente.objects.get(id=id)
+    pacienteexame = Exame.objects.get(id=id)
         
     if request.method == 'POST':
-        form = FluxoDeCaixaForm(request.POST)
+        form = PagamentoForm(request.POST)
         print(form)
         if form.is_valid():
             pagamento = form.save(commit=False)
@@ -50,6 +51,6 @@ def fluxo_caixa_pagamento(request, id):
         else:
             print('erro')
             
-    pagamento = FluxoDeCaixaForm()        
+    pagamento = PagamentoForm()        
     
-    return render(request, 'fluxo-caixa/fluxo-caixa-pagamento.html', {'paciente': paciente, 'pagamento': pagamento})
+    return render(request, 'fluxo-caixa/fluxo-caixa-pagamento.html', {'paciente': paciente, 'pagamento': pagamento, 'pacienteexame': pacienteexame})

@@ -1,0 +1,80 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<!-- start breadcumbss title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-left">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/dashboard">App</a></li>
+                    <li class="breadcrumb-item"><a href="/atendimento">Atendimento</a></li>
+                    <li class="breadcrumb-item active">Iniciar atendimento</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <section id="fila-espera">
+        <div class="col-xl-10">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Iniciar um atendimento</h4>
+                </div>
+                <div class="card-body">
+                    <div class="modal-body">
+                        {% if form.errors %}
+                        <ul>
+                            {% for field in form %}
+                            {% for error in field.errors %}
+                            <li><strong>{{ field.label }}</strong>: {{ error }}</li>
+                            {% endfor %}
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                
+                        <form class="ps-3 pe-3" action="/atendimento/cadastro/" method="POST">
+                            {% csrf_token %}
+                            <div class="row mb-3">
+                                <div class="form-group col-5">
+                                    <label for="nome">Nome: </label>
+                                    {{ paciente.nome_completo }}
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
+                                <div class="form-group col-5">
+                                    <label for="solicitacao">Solicitação: </label>
+                                    {{ atendimento.solicitacao }}
+                                </div>
+                            </div>
+                
+                            <div class="row mb-3">
+                                <div class="form-group col-3">
+                                    <label for="metodo-pagamento">Método de Pagamento: </label>
+                                    {{ pagamento.metodo_pagamento }}
+                                </div>
+                                <div class="form-group col-3">
+                                    <label for="metodo-pagamento">Pagamento Dinheiro: </label>
+                                    {{ pagamento.valor_dinheiro }}
+                                </div>
+                                <div class="form-group col-3">
+                                    <label for="metodo-pagamento">Pagamento PIX: </label>
+                                    {{ pagamento.valor_pix }}
+                                </div>
+                            </div>
+                
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                
+                        </form>
+                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

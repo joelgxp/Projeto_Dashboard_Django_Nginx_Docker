@@ -9,7 +9,6 @@
                 <ol class="breadcrumb m-0">
                     <li class="breadcrumb-item"><a href="/dashboard">App</a></li>
                     <li class="breadcrumb-item"><a href="/paciente">Paciente</a></li>
-
                     <li class="breadcrumb-item active">Exame</li>
                 </ol>
             </div>
@@ -44,6 +43,7 @@
                             <thead>
                                 <tr>
                                     <th class="col3">Data Exame</th>
+                                    <th class="col3">Solicitação</th>
                                     <th class="col2">Visão LE</th>
                                     <th class="col2">Visão LD</th>
                                     <th class="col2">Correção Visual</th>
@@ -56,6 +56,7 @@
                                 {% for exame in exames %}
                                 <tr>
                                     <td>{{ exame.data_exame | date:"d/m/Y" }}</td>
+                                    <td>{{ exame.paciente.solicitacao }}</td>
                                     <td>{{ exame.visao_le }}</td>
                                     <td>{{ exame.visao_ld }}</td>
                                     <td>{{ exame.correcao_visual }}</td>

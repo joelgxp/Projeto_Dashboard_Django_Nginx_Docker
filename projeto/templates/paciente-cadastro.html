@@ -7,9 +7,9 @@
         <div class="page-title-box">
             <div class="page-title-left">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">App</a></li>
-                    <li class="breadcrumb-item"><a href="javascript: void(0);">Cadastro</a></li>
-                    <li class="breadcrumb-item active">Lider</li>
+                    <li class="breadcrumb-item"><a href="/dashboard">App</a></li>
+                    <li class="breadcrumb-item"><a href="/paciente">Paciente</a></li>
+                    <li class="breadcrumb-item active">Cadastro</li>
                 </ol>
             </div>
         </div>
@@ -19,7 +19,7 @@
 
 <!-- formulario cadastrar -->
 
-<div class="modal-content">
+<div class="content">
     <div class="modal-body">
         <h2 class="mt-0 mb-4">Cadastrar Paciente</h2>
         <!-- Exibir erros do formulário -->
@@ -52,11 +52,6 @@
                 </div>
 
                 <div class="form-group col-2">
-                    <label for="solicitacao">Solicitação</label>
-                    {{ form.solicitacao }}
-                </div>
-
-                <div class="form-group col-2">
                     <label for="dataCadastro">Data Cadastro</label>
                     {{ form.data_cadastro }}
                 </div>
@@ -73,12 +68,12 @@
                     {{ form.nome_completo }}
                 </div>
 
-                <div class="form-group col">
+                <div class="form-group col-2">
                     <label for="dataNascimento">Data de Nascimento</label>
                     {{ form.data_nascimento }}
                 </div>
 
-                <div class="form-group col">
+                <div class="form-group col-2">
                     <label for="sexo">Sexo</label>
                     {{ form.sexo }}
                 </div>
@@ -136,7 +131,7 @@
                     {{ form.numero }}
                 </div>
 
-                <div class="form-group col">
+                <div class="form-group col-3">
                     <label for="bairro">Bairro</label>
                     {{ form.bairro }}
                 </div>
@@ -172,10 +167,6 @@
                 <div class="form-group col-3">
                     <label for="telefone">Telefone</label>
                     {{ form.celular }}
-                </div>
-                <div class="form-group col-2">
-                    <label for="telefone">Encaminhar para Exame</label>
-                    {{ form.atendido }}
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Salvar</button>

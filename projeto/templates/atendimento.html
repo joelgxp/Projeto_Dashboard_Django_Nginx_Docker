@@ -1,5 +1,6 @@
 {% extends 'index.html' %}
 {% block content %}
+{% load static %}
 
 <!-- start breadcumbss title -->
 <div class="row">
@@ -24,6 +25,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4>Fila de espera</h4>
+                    <button id="openModalBtn">Cadastrar Exame</button>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive-sm">
@@ -45,7 +47,8 @@
                                     <td>{{ paciente.data_cadastro | date:"d/m/Y" }}</td>
                                     <td>{{ paciente.solicitacao }}</td>
                                     <td>
-                                        <a href="{% url 'atendimento_preencher_exame' id=paciente.id %}" class="text-reset fs-16 px-1" title="Preencher"> <i
+                                        <a href="{% url 'atendimento_preencher_exame' id=paciente.id %}"
+                                            class="text-reset fs-16 px-1" title="Preencher"> <i
                                                 class="ri-dossier-line"></i></a>
                                     </td>
                                 </tr>
@@ -93,5 +96,34 @@
     </section>
 </div>
 <!-- end page lista paciente -->
+
+<!-- modal criar atendimento -->
+
+<div id="exameModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Cadastrar Exame</h2>
+        <form id="exameForm">
+            <label for="nomeExame">Nome:</label>
+            <input type="text" id="nomeExame" required><br><br>
+
+            <label for="tipoSolicitacao">Tipo de Solicitação:</label>
+            <select id="tipoSolicitacao" required>
+                <option value="Urgente">Urgente</option>
+                <option value="Normal">Normal</option>
+            </select><br><br>
+
+            <label for="valorExame">Valor do Exame:</label>
+            <input type="number" id="valorExame" required><br><br>
+
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </form>
+    </div>
+</div>
+
+<!-- fim modal criar atendimento -->
+
+<!-- Atendimento js -->
+<script src="{% static 'js/atendimento.js' %}"></script>
 
 {% endblock %}
