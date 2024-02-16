@@ -190,9 +190,9 @@ class Atendimento(models.Model):
         ('ALTERACAO_DADOS', "ALTERAÇÃO DE DADOS")
     )
     solicitacao = models.CharField(max_length=45, choices=CHOICE_SOLICITACAO, null=False, blank=False)
-    id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE)
+    id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, null=True, blank=True)
     id_exame = models.ForeignKey(Exame, on_delete=models.CASCADE, null=True, blank=True)
-    id_pagamento = models.ForeignKey(Pagamento, on_delete=models.CASCADE)
+    id_pagamento = models.ForeignKey(Pagamento, on_delete=models.CASCADE, null=True, blank=True)
     status = models.BooleanField(default=False)
     
 class AtendimentoForm(forms.ModelForm):

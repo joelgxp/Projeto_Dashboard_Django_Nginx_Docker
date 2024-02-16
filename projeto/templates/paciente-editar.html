@@ -19,7 +19,7 @@
 
 <!-- formulario cadastrar -->
 
-<div class="modal-content">
+<div class="content">
     <div class="modal-body">
         <h2 class="mt-0 mb-4">Editar Paciente</h2>
         <!-- Exibir erros do formulário -->
@@ -49,11 +49,6 @@
                 <div class="form-group col-2">
                     <label for="categoria">Categoria</label>
                     {{ form.categoria }}
-                </div>
-
-                <div class="form-group col-2">
-                    <label for="solicitacao">Solicitação</label>
-                    {{ form.solicitacao }}
                 </div>
 
                 <div class="form-group col-2">
@@ -172,10 +167,6 @@
                 <div class="form-group col-3">
                     <label for="telefone">Telefone</label>
                     {{ form.celular }}
-                </div>
-                <div class="form-group col-2">
-                    <label for="telefone">Encaminhar para Exame</label>
-                    {{ form.atendido }}
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Salvar</button>

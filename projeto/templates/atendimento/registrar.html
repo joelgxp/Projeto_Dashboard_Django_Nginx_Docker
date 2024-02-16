@@ -40,8 +40,8 @@
                             {% csrf_token %}
                             <div class="row mb-3">
                                 <div class="form-group col-5">
-                                    <label for="nome">Nome: </label>
-                                    {{ paciente.nome_completo }}
+                                    <label for="nome">ID: </label>
+                                    <input type="text" name="id" value="{{ paciente.id }}">                                    
                                 </div>
                             </div>
 

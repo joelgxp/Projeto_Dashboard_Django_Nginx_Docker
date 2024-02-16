@@ -39,7 +39,7 @@ urlpatterns = [
     path('paciente/exames/lista/<int:id>/', paciente_view.paciente_exames_lista, name='paciente_exames_lista'),    
     
     path('atendimento/', atendimento_view.atendimento, name='atendimento'),
-    path('atendimento/exame/<int:id>/', atendimento_view.atendimento_preenche_exame, name='atendimento_preencher_exame'),  
+    path('atendimento/exame/<int:id>/', atendimento_view.atendimento_preenche_exame, name='atendimento_preencher_exame'), 
     path('atendimento/cadastro/', atendimento_view.atendimento_cadastro, name='atendimento_cadastro'),
     
     path('pagamento/', fluxo_caixa_view.fluxo_caixa, name='fluxo_caixa'),
