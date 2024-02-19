@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 
-from ..models import Pagamento, PagamentoForm, Paciente, Exame
+from ..models import Pagamento, PagamentoForm, Paciente, Exame, Atendimento
 
 def fluxo_caixa(request):
     # Recupera todos os pagamentos
-    tipo_solicitacao = Paciente.objects.all()
+    tipo_solicitacao = Atendimento.objects.all()
     print(tipo_solicitacao)
     pagamentos = Pagamento.objects.all()
 

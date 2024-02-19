@@ -29,7 +29,7 @@ class Paciente(models.Model):
         ('MASCULINO', "MASCULINO"),
         ('FEMININO', "FEMININO")
     )  
-    guia = models.IntegerField(null=False, blank=False)
+    guia = models.IntegerField(null=False, blank=False, unique=True)
     registro = models.CharField(max_length=9, null=False, blank=False)
     categoria = models.CharField(max_length=5, choices=CATEGORIA_CHOICES)
     data_cadastro = models.DateField(null=False, blank=False)
@@ -189,7 +189,9 @@ class Atendimento(models.Model):
         ('MUDANCA_CATEGORIA', "MUDANÇA DE CATEGORIA"),
         ('ALTERACAO_DADOS', "ALTERAÇÃO DE DADOS")
     )
+    guia = models.IntegerField(null=False, blank=False, unique=True)
     solicitacao = models.CharField(max_length=45, choices=CHOICE_SOLICITACAO, null=False, blank=False)
+    data = models.DateField(null=False, blank=False, auto_now_add=True)
     id_paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, null=True, blank=True)
     id_exame = models.ForeignKey(Exame, on_delete=models.CASCADE, null=True, blank=True)
     id_pagamento = models.ForeignKey(Pagamento, on_delete=models.CASCADE, null=True, blank=True)

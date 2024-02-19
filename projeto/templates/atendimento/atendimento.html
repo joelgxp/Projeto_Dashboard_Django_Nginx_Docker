@@ -33,20 +33,20 @@
                                 <tr>
                                     <th scope="col">Guia</th>
                                     <th scope="col">Nome</th>
-                                    <th scope="col">Data Exame</th>
+                                    <th scope="col">Data Cadastro</th>
                                     <th scope="col">Solicitação</th>
                                     <th scope="col">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for paciente in pacientes_em_atendimento %}
+                                {% for atendimento in pacientes_em_atendimento %}
                                 <tr>
-                                    <td>{{ paciente.guia }}</td>
-                                    <td>{{ paciente.nome_completo }}</td>
-                                    <td>{{ paciente.data_cadastro | date:"d/m/Y" }}</td>
-                                    <td>{{ paciente.solicitacao }}</td>
+                                    <td>{{ atendimento.id_paciente.guia }}</td>
+                                    <td>{{ atendimento.id_paciente.nome_completo }}</td>
+                                    <td>{{ atendimento.id_paciente.data_cadastro | date:"d/m/Y" }}</td>
+                                    <td>{{ atendimento.solicitacao }}</td>
                                     <td>
-                                        <a href="{% url 'atendimento_preencher_exame' id=paciente.id %}"
+                                        <a href="{% url 'atendimento_preencher_exame' id=atendimento.id %}"
                                             class="text-reset fs-16 px-1" title="Preencher"> <i
                                                 class="ri-dossier-line"></i></a>
                                     </td>
@@ -71,6 +71,7 @@
                         <table class="table table-striped table-centered mb-0">
                             <thead>
                                 <tr>
+                                    <th>Guia</th>
                                     <th>Nome</th>
                                     <th>Data Exame</th>
                                     <th>Solicitação</th>
@@ -80,9 +81,10 @@
                             <tbody>
                                 {% for paciente in pacientes_atendidos %}
                                 <tr>
-                                    <td>{{ paciente.paciente.nome_completo }}</td>
-                                    <td>{{ paciente.data_exame | date:"d/m/Y" }}</td>
-                                    <td>{{ paciente.paciente.solicitacao }}</td>
+                                    <td>{{ paciente.id_paciente.guia }}</td>
+                                    <td>{{ paciente.id_paciente.nome_completo }}</td>
+                                    <td>{{ paciente.id_paciente.data_cadastro | date:"d/m/Y" }}</td>
+                                    <td>{{ paciente.solicitacao }}</td>
                                     <td>{{ paciente.conclusao }}</td>
                                 </tr>
                                 {% endfor %}

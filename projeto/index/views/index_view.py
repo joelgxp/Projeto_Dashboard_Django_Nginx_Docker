@@ -10,7 +10,7 @@ def index(request):
 
 @login_required
 def dashboard(request):
-    pacientes_em_atendimento = Paciente.objects.filter(atendido=1)
+    pacientes_em_atendimento = Paciente.objects.filter()
     pacientes_atendidos = Exame.objects.filter(data_exame=datetime.now())
     return render(request, 'dashboard.html', {'pacientes_em_atendimento': pacientes_em_atendimento, 
                                               'pacientes_atendidos': pacientes_atendidos, 

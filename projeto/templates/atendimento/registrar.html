@@ -26,22 +26,22 @@
                 </div>
                 <div class="card-body">
                     <div class="modal-body">
-                        {% if form.errors %}
-                        <ul>
-                            {% for field in form %}
-                            {% for error in field.errors %}
-                            <li><strong>{{ field.label }}</strong>: {{ error }}</li>
-                            {% endfor %}
-                            {% endfor %}
-                        </ul>
+                        {% if erro %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ erro }}
+                        </div>
                         {% endif %}
-                
+
                         <form class="ps-3 pe-3" action="/atendimento/cadastro/" method="POST">
                             {% csrf_token %}
                             <div class="row mb-3">
                                 <div class="form-group col-5">
-                                    <label for="nome">ID: </label>
-                                    <input type="text" name="id" value="{{ paciente.id }}">                                    
+                                <label for="paciente_select">Selecione o paciente:</label><br>
+                                <select id="paciente_select" name="paciente" class="form-select">
+                                    {% for paciente in pacientes_por_data %}
+                                    <option value="{{ paciente.guia }}">Guia: {{ paciente.guia }} - {{ paciente.nome_completo }}</option>
+                                    {% endfor %}
+                                </select><br><br>
                                 </div>
                             </div>
 
@@ -51,7 +51,7 @@
                                     {{ atendimento.solicitacao }}
                                 </div>
                             </div>
-                
+
                             <div class="row mb-3">
                                 <div class="form-group col-3">
                                     <label for="metodo-pagamento">Método de Pagamento: </label>
@@ -66,11 +66,11 @@
                                     {{ pagamento.valor_pix }}
                                 </div>
                             </div>
-                
+
                             <button type="submit" class="btn btn-primary">Salvar</button>
-                
+
                         </form>
-                
+
                     </div>
                 </div>
             </div>
