@@ -1,0 +1,113 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Cadastra-se</title>
+    <meta name="viewport" content="width=device-width, initial-scale=0.8">
+
+    <!-- Adicione o link para o manifesto -->
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}">
+
+    <!-- Theme Config Js -->
+    <script src="{% static 'js/config.js' %}"></script>
+
+    <!-- App css -->
+    <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
+
+    <!-- Icons css -->
+    <link rel="stylesheet" href="{% static 'css/icons.min.css' %}">
+</head>
+
+<body class="authentication-bg">
+
+    <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5 position-relative">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xxl-8 col-lg-10">
+                    <div class="card overflow-hidden bg-opacity-25">
+                        <div class="row g-0">
+                            <div class="col-lg-6 d-none d-lg-block p-2">
+                                <img src="{% static 'image/auth-img.jpg' %}" alt="" class="img-fluid rounded h-100">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex flex-column h-100">
+                                    <div class="p-4 my-auto">
+                                        <h4 class="fs-20">Cadastre-se</h4>
+                                        <p class="text-muted mb-3">Digite seus dados para criar sua conta.</p>
+                                        {% if messages %}
+                                        {% for message in messages %}
+                                        <section class="alert {{message.tags}}">
+                                            {{message}}
+                                        </section>
+                                        {% endfor %}
+                                        {% endif %}
+
+                                        <!-- form -->
+                                        <form action="/auth_register/" method="POST">
+
+                                            {{ error }}
+
+                                            {% csrf_token %}
+
+                                            <div class="mb-3">
+                                                <label for="username" class="form-label">Nome completo</label>
+                                                <input class="form-control" type="text" name="username" id="username"
+                                                    placeholder="Digite seu nome" required="">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Email</label>
+                                                <input class="form-control" type="email" name="email" id="email"
+                                                    required="" placeholder="Digite seu email">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="password" class="form-label">Senha</label>
+                                                <input class="form-control" type="password" name="password" required=""
+                                                    id="password" placeholder="Digite sua senha">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="password2" class="form-label">Confirme sua senha</label>
+                                                <input class="form-control" type="password" name="password2" required=""
+                                                    id="password2" placeholder="Confirme sua senha">
+                                            </div>
+                                            <div class="mb-0 d-grid text-center">
+                                                <button class="btn btn-primary fw-semibold"
+                                                    type="submit">Cadastrar</button>
+                                            </div>
+                                            <div class="col-12 text-center">
+                                                <br><br>
+                                                <p class="text-dark-emphasis">Já tem uma conta? <a href="/auth_login"
+                                                        class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Entrar</b></a>
+                                                </p>
+                                            </div> <!-- end col -->
+
+                                        </form>
+                                        <!-- end form-->
+                                    </div>
+                                </div>
+                            </div> <!-- end col -->
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end page -->
+
+    <footer class="footer footer-alt fw-medium">
+        <span class="text-dark-emphasis">
+            <script>document.write(new Date().getFullYear())</script> © Joel
+        </span>
+    </footer>
+
+</body>
+
+</html>
