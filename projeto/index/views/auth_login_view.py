@@ -7,7 +7,7 @@ from django.contrib import messages
 
 def auth_login(request):
     if request.method == 'GET':
-        return render(request, 'auth-login.html')
+        return render(request, 'auth/login.html')
         
     elif request.method == 'POST':
         username=request.POST.get('username')
@@ -24,5 +24,5 @@ def auth_login(request):
 
 @login_required        
 def auth_logout(request):
-    return render(request, 'auth-logout.html')
+    return render(request, 'auth/logout.html')
         
