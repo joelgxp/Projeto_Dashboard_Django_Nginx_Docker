@@ -3,7 +3,7 @@ name: Django CI
 on:
   push:
     branches:
-      - clinica
+      - main
 
 jobs:
   build:
