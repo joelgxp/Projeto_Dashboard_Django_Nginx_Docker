@@ -6,17 +6,17 @@ services:
       - static:/app/static
     build:
       context: .
-    image: joelgxp/clinica-django:0.0.1
+    image: joelgxp/fox-django:0.0.1
     ports:
-      - 8000:8000
+      - 8003:8000
 
   nginx:
     build: ./nginx
-    image: joelgxp/clinica-nginx:0.0.1
+    image: joelgxp/fox-nginx:0.0.1
     volumes:
       - static:/static
     ports:
-      - 80:80
+      - 9003:80
     depends_on:
       - django_gunicorn
 
