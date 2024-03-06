@@ -1,0 +1,99 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<!-- start breadcumbss title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-left">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/dashboard">App</a></li>
+                    <li class="breadcrumb-item"><a href="/veiculos">Veículo</a></li>
+                    <li class="breadcrumb-item active">Cadastro</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<!-- formulario cadastrar -->
+
+<div class="content">
+    <div class="modal-body">
+        <h2 class="mt-0 mb-4">Cadastrar Veículo</h2>
+        <!-- Exibir erros do formulário -->
+        {% if form.errors %}
+        <ul>
+            {% for field in form %}
+            {% for error in field.errors %}
+            <li><strong>{{ field.label }}</strong>: {{ error }}</li>
+            {% endfor %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form class="ps-3 pe-3" action="/veiculo/cadastro/" method="POST">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="form-group col-2">
+                    <label for="placa">Placa</label>
+                    {{ form.placa }}
+                </div>
+
+                <div class="form-group col-2">
+                    <label for="marca">Marca</label>
+                    {{ form.marca }}
+                </div>
+
+                <div class="form-group col-2">
+                    <label for="modelo">Modelo</label>
+                    {{ form.modelo }}
+                </div>
+
+                <div class="form-group col-2">
+                    <label for="anoFabricacao">Ano Fabricação</label>
+                    {{ form.ano_fabricacao }}
+                </div>
+
+                <div class="form-group col-2">
+                    <label for="anoModelo">Ano Modelo</label>
+                    {{ form.ano_modelo }}
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="form-group col-6">
+                    <label for="chassi">Chassi</label>
+                    {{ form.chassi }}
+                </div>
+
+                <div class="form-group col-2">
+                    <label for="cor">Cor</label>
+                    {{ form.cor }}
+                </div>
+
+                <div class="form-group col-2">
+                    <label for="renavam">Renavam</label>
+                    {{ form.renavam }}
+                </div>
+            </div>
+
+            <div class="row mb-3">
+      
+                <div class="form-group col-2">
+                    <label for="complemento">Complemento</label>
+                    {{ form.complemento }}
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+
+        </form>
+
+    </div>
+</div>
+<!-- end modal criar -->
+
+{% endblock %}
