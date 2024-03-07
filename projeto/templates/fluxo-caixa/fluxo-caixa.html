@@ -1,0 +1,89 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<!-- start breadcumbss title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-left">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/dashboard">App</a></li>
+                    <li class="breadcrumb-item active">Caixa</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+<div class="row">
+    <section id="fluxo-caixa">
+        <div class="col-xl-10">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive-sm">
+                        <table class="table table-striped table-centered mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Guia</th>
+                                    <th scope="col">Nome</th>
+                                    <th scope="col">Data Exame</th>
+                                    <th scope="col">Solicitação</th>
+                                    <th scope="col">Método de Pagamento</th>
+                                    <th scope="col">Dinheiro</th>
+                                    <th scope="col">PIX</th>
+                                    <th scope="col">Valor Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for pagamento in pagamentos %}
+                                <tr>
+                                    <td>{{ pagamento.paciente.guia }}</td>
+                                    <td>{{ pagamento.paciente.nome_completo }}</td>
+                                    <td>{{ pagamento.data | date:"d/m/Y" }}</td>
+                                    <td>{{ pagamento.pacienteexame.solicitacao }}</td>
+                                    <td>{{ pagamento.metodo_pagamento }}</td>
+                                    <td>{{ pagamento.valor_dinheiro }}</td>
+                                    <td>{{ pagamento.valor_pix }}</td>
+                                    <td>{{ pagamento.valor_total }}</td>
+                                    
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<div class="row">
+    <section id="fluxo-caixa">
+        <div class="col-xl-10">
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive-sm">
+                        <table class="table table-striped table-centered mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Dinheiro</th>
+                                    <th scope="col">PIX</th>
+                                    <th scope="col">Valor Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ total_dinheiro }}</td>
+                                    <td>{{ total_pix }}</td>
+                                    <td>{{ total }}</td>                                    
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}

@@ -7,7 +7,7 @@
     <meta charset="utf-8" />
     <title>Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
-    
+
     <!-- App favicon -->
     <link rel="shortcut icon" href="{% static 'image/favicon.ico' %}">
 
@@ -37,51 +37,33 @@
                                         <h4 class="fs-20">Faça Login ou Cadastre-se</h4>
                                         <p class="text-muted mb-3">Entre com sua conta.
                                         </p>
+                                        {% if messages %}
+                                        {% for message in messages %}
+                                        <section class="alert {{message.tags}}">
+                                            {{message}}
+                                        </section>
+                                        {% endfor %}
+                                        {% endif %}
 
                                         <!-- form -->
                                         <form action="/auth_login/" method="POST">
-
-                                            {{ error }}
-
                                             {% csrf_token %}
-                                            
+
                                             <div class="mb-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input class="form-control" type="email" name="email" id="email" required=""
-                                                    placeholder="Digite seu email">
+                                                <label for="email" class="form-label">Usuário</label>
+                                                <input class="form-control" type="text" name="username" id="username"
+                                                    required="" placeholder="Digite seu usuário">
                                             </div>
-                                            <div class="mb-3">
-                                                <a href="auth-forgotpw.html"
-                                                    class="text-muted float-end"><small>Esqueceu sua senha?</small></a>
+                                            <div class="mb-3">                                                
                                                 <label for="password" class="form-label">Senha</label>
-                                                <input class="form-control" type="password" name="password" required="" id="password"
-                                                    placeholder="Digite sua senha">
+                                                <input class="form-control" type="password" name="password" required=""
+                                                    id="password" placeholder="Digite sua senha">
                                             </div>
-                                            <div class="mb-3">
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input"
-                                                        id="checkbox-signin">
-                                                    <label class="form-check-label" for="checkbox-signin">Lembre-me
-                                                    </label>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="mb-0 text-start">
                                                 <button class="btn btn-soft-primary w-100" type="submit"><i
-                                                        class="ri-login-circle-fill me-1"></i> <span class="fw-bold">Entrar</span> </button>
-                                            </div>
-
-                                            <div class="text-center mt-4">
-                                                <p class="text-muted fs-16">Entrar com</p>
-                                                <div class="d-flex gap-2 justify-content-center mt-3">
-                                                    <a href="javascript: void(0);" class="btn btn-soft-primary"><i
-                                                            class="ri-facebook-circle-fill"></i></a>
-                                                    <a href="javascript: void(0);" class="btn btn-soft-danger"><i
-                                                            class="ri-google-fill"></i></a>
-                                                    <a href="javascript: void(0);" class="btn btn-soft-info"><i
-                                                            class="ri-twitter-fill"></i></a>
-                                                    <a href="javascript: void(0);" class="btn btn-soft-dark"><i
-                                                            class="ri-github-fill"></i></a>
-                                                </div>
+                                                        class="ri-login-circle-fill me-1"></i> <span
+                                                        class="fw-bold">Entrar</span> </button>
                                             </div>
                                         </form>
                                         <!-- end form-->

@@ -1,0 +1,125 @@
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Página para Impressão</title>
+    <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
+</head>
+
+<div class="ficha-impressao">
+    <p>CLIMPÉ - Clínica Médico-Psicotécnica de Guaxupé</p>
+    <div class="row mb-0">
+        <div class="col-2">
+            <label for="inputGuia">Guia: </label>
+            {{ paciente.guia }}
+        </div>
+        <div class="col-5">
+            <label for="inputRegistro">Registro: </label>
+            {{ paciente.registro }}
+        </div>
+        <div class="col-5">
+            <label for="inputDataCadastro">Data Cadastro: </label>
+            {{ paciente.data_cadastro | date:"d/m/Y" }}
+        </div>
+    </div>
+    <div class="row mb-0">
+        <div class="col-6">
+            <label for="inputSolicitacao" class="form-label">Solicitação: </label>
+            {{ paciente.solicitacao }}
+        </div>
+        <div class="col-4">
+            <label for="inputCategoria" class="form-label">Categoria:</label>
+            {{ paciente.categoria }}
+        </div>
+    </div>
+
+    <div class="row mb-0">
+        <div class="col-5">
+            <label for="inputNomeCandidato" class="form-label">Nome:</label>
+            {{ paciente.nome_completo }}
+        </div>
+        <div class="col-4">
+            <label for="inputNascimento" class="form-label">Nascimento:</label>
+            {{ paciente.data_nascimento | date:"d/m/Y" }}
+        </div>
+        <div class="col-3">
+            <label for="inputSexo" class="form-label">Sexo:</label>
+            {{ paciente.sexo }}
+        </div>
+    </div>
+
+    <div class="row mb-0">
+        <div class="col-4">
+            <label for="inputRgIdentidade" class="form-label">Identidade:</label>
+            {{ paciente.identidade }}
+        </div>
+        <div class="col-2">
+            <label for="inputRgOrgaoUF" class="form-label">UF:</label>
+            {{ paciente.orgao_emissor }}
+        </div>
+        <div class="col-4">
+            <label for="inputNaturalidade" class="form-label">Naturalidade:</label>
+            {{ paciente.naturalidade }}
+        </div>
+        <div class="col-2">
+            <label for="inputNaturalidadeUF" class="form-label">UF:</label>
+            {{ paciente.uf_naturalidade }}
+        </div>
+    </div>
+
+    <div class="row mb-0">
+        <div class="col-6">
+            <label for="inputNomeMae" class="form-label">Nome da mãe:</label>
+            {{ paciente.nome_mae }}
+        </div>
+        <div class="col-6">
+            <label for="inputNomePai" class="form-label">Nome do pai:</label>
+            {{ paciente.nome_pai }}
+
+        </div>
+    </div>
+
+    <div class="row mb-0">
+        <div class="col-7">
+            <label for="inputLogradouro" class="form-label">Logradouro:</label>
+            {{ paciente.logradouro }}
+        </div>
+        <div class="col-2">
+            <label for="inputNumero" class="form-label">Número:</label>
+            {{ paciente.numero }}
+        </div>
+        <div class="col-3">
+            <label for="inputBairro" class="form-label">Bairro:</label>
+            {{ paciente.bairro }}
+        </div>
+    </div>
+
+    <div class="row mb-0">
+        <div class="col-4">
+            <label for="inputCidade" class="form-label">Cidade;</label>
+            {{ paciente.cidade }}
+        </div>
+        <div class="col-2">
+            <label for="inputLogradouroUF" class="form-label">UF:</label>
+            {{ paciente.uf_cidade }}
+        </div>
+        <div class="col-4">
+            <label for="inputCEP" class="form-label">CEP:</label>
+            {{ paciente.cep }}
+        </div>
+    </div>
+
+    <div class="row mb-0">
+        <div class="col-4">
+            <label for="inputCPF" class="form-label">CPF:</label>
+            {{ paciente.cpf }}
+        </div>
+        <div class="col-4">
+            <label for="inputTelefone" class="form-label">Telefone:</label>
+            {{ paciente.celular }}
+        </div>
+    </div>
+
+    <button class="no-print" onclick="window.print()">Imprimir Página</button>
+</div>

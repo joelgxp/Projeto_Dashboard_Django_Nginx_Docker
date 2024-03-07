@@ -1,0 +1,78 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<!-- start breadcumbss title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-left">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/dashboard">App</a></li>
+                    <li class="breadcrumb-item active">Caixa</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+<div class="card">
+    <div class="card-header">
+        <h2 class="mt-0 mb-4">Pagamento</h2>
+    </div>
+    <div class="card-body">
+        <!-- Exibir erros do formulário -->
+        {% if form.errors %}
+        <ul>
+            {% for field in form %}
+            {% for error in field.errors %}
+            <li><strong>{{ field.label }}</strong>: {{ error }}</li>
+            {% endfor %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form class="ps-3 pe-3" action="/pagamento/registrar/{{paciente.id}}/" method="POST">
+            {% csrf_token %}
+            <div class="row mb-3">
+                <div class="form-group col-2">
+                    <label for="guia">Guia: </label>
+                    {{ paciente.guia }}
+                </div>
+
+                <div class="form-group col-3">
+                    <label for="registro">Nome: </label>
+                    {{ paciente.nome_completo }}
+                </div>
+
+                <div class="form-group col-3">
+                    <label for="categoria">Solicitação: </label>
+                    {{ pacienteexame.solicitacao }}
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="form-group col-3">
+                    <label for="nome">Método de Pagamento</label>
+                    {{ pagamento.metodo_pagamento }}
+                </div>
+
+                <div class="form-group col-2">
+                    <label for="dataNascimento">Dinheiro</label>
+                    {{ pagamento.valor_dinheiro }}
+                </div>
+
+                <div class="form-group col-2">
+                    <label for="sexo">PIX</label>
+                    {{ pagamento.valor_pix }}
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+
+        </form>
+
+    </div>
+</div>
+{% endblock %}

@@ -16,19 +16,33 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from index.views import index_view, lider_view, colaborador_view, reuniao_view, auth_login_view, auth_register_view, usuarios_view
+from index.views import index_view, auth_login_view, auth_register_view, usuarios_view, atendimento_view, paciente_view, fluxo_caixa_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),    
-    path('usuarios/', usuarios_view.UsuariosView.as_view(), name='usuarios'),
     path('', index_view.index, name='index'),
+    
+    path('usuarios/', usuarios_view.UsuariosView.as_view(), name='usuarios'),
+    
     path('auth_login/', auth_login_view.auth_login, name='auth_login'),
     path('auth_register/', auth_register_view.auth_register, name='auth_register'),
     path('auth_logout/', auth_login_view.auth_logout, name='auth_logout'),
+    
     path('dashboard/', index_view.dashboard, name='dashboard'),
     path('profile/', index_view.profile, name='profile'),
-    path('lider/', lider_view.lider, name='lider'),
-    path('criar_lider/', lider_view.criar_lider, name='criar_lider'),
-    path('colaborador/', colaborador_view.colaborador, name='colaborador'),
-    path('reuniao/', reuniao_view.reuniao, name='reuniao')
+    
+    path('paciente/', paciente_view.paciente, name='paciente'),
+    path('paciente/cadastro/', paciente_view.paciente_cadastro, name='paciente_cadastro'),
+    path('paciente/editar/<int:id>/', paciente_view.paciente_editar, name='paciente_editar'),
+    path('paciente/impressao/<int:id>/', paciente_view.paciente_ficha_impressao, name='paciente_ficha_impressao'),
+    path('paciente/exames/lista/<int:id>/', paciente_view.paciente_exames_lista, name='paciente_exames_lista'),    
+    
+    path('atendimento/', atendimento_view.atendimento, name='atendimento'),
+    path('atendimento/exame/<int:id>/', atendimento_view.atendimento_preenche_exame, name='atendimento_preencher_exame'), 
+    path('atendimento/cadastro/', atendimento_view.atendimento_cadastro, name='atendimento_cadastro'),
+    
+    path('pagamento/', fluxo_caixa_view.fluxo_caixa, name='fluxo_caixa'),
+    path('pagamento/registrar/<int:id>/', fluxo_caixa_view.fluxo_caixa_pagamento, name='fluxo_caixa_pagamento'),
+    
 ]
