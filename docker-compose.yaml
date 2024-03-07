@@ -6,13 +6,13 @@ services:
       - static:/app/static
     build:
       context: .
-    image: joelgxp/fox-django:0.0.1
+    image: joelgxp/clinica-django:latest
     ports:
       - 8003:8000
 
   nginx:
     build: ./nginx
-    image: joelgxp/fox-nginx:0.0.1
+    image: joelgxp/clinica-nginx:latest
     volumes:
       - static:/static
     ports:
