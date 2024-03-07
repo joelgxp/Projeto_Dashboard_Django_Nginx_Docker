@@ -21,6 +21,7 @@ ALLOWED_HOSTS = ['*']
 
 CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'http://144.22.195.119', 'https://144.22.195.119', 'http://localhost', 'https://localhost', 'http://138.59.239.153', 'https://138.59.239.153/', 'http://joelsouza.ddns.me', 'https://joelsouza.ddns.me', 'http://192.168.14.200:9002']
 
+CORS_ALLOW_ALL_ORIGINS = True
 
 TEMPLATES_DIR = BASE_DIR / 'templates'
 
