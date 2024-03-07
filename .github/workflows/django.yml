@@ -23,7 +23,7 @@ jobs:
           context: ./projeto
           file: ./projeto/Dockerfile
           push: true
-          tags: 
+          tags: | 
             joelgxp/clinica:v1
             joelgxp/clinica:latest
 
