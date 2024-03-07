@@ -20,8 +20,8 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v5.1.0
         with:
-          context: ./projeto
-          file: ./projeto/Dockerfile
+          context: ./
+          file: ./Dockerfile
           push: true
           tags: | 
             joelgxp/clinica:v1
