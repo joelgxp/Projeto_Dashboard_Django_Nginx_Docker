@@ -18,7 +18,7 @@ jobs:
           username: ${{secrets.DOCKER_USERNAME}}
           password: ${{secrets.DOCKER_PASSWORD}}   
       
-      - name: Build and push Docker images
+      - name: Build and push Docker images Django
         uses: docker/build-push-action@v5.1.0
         with:
           context: ./
@@ -28,11 +28,11 @@ jobs:
             joelgxp/clinica-django:${{github.run_number}}
             joelgxp/clinica-django:latest
 
-      - name: Build and push Docker images
+      - name: Build and push Docker images Nginx
         uses: docker/build-push-action@v5.1.0
         with:
           context: ./nginx
-          file: ./Dockerfile
+          file: ./nginx/Dockerfile
           push: true
           tags: | 
             joelgxp/clinica-nginx:${{github.run_number}}
