@@ -24,7 +24,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: | 
-            joelgxp/clinica:v1
+            joelgxp/clinica:${{github.run_number}}
             joelgxp/clinica:latest
 
       
